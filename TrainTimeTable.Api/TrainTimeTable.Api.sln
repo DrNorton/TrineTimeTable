@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTimeTable.Api", "TrainTimeTable.Api\TrainTimeTable.Api.csproj", "{0979021F-1984-4207-8C3E-790B66FD69F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTimeTable.Api.Dependencies", "TrainTimeTable.Api.Dependencies\TrainTimeTable.Api.Dependencies.csproj", "{C2AC5E42-9491-4B39-8A58-E7B4FEE78459}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{8A8F8B60-239E-43DB-99A1-4F56F46C71FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTimeTable.Api.Controllers", "TrainTimeTable.Api.Controllers\TrainTimeTable.Api.Controllers.csproj", "{BE4BE6E7-0AA3-43EB-BD48-14D8AC9B4D63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTimeTable.Api.Dao", "TrainTimeTable.Api.Dao\TrainTimeTable.Api.Dao.csproj", "{5FE5B258-6CB2-4906-A590-31717F29D6FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTimeTable.Api.Dto", "TrainTimeTable.Api.Dto\TrainTimeTable.Api.Dto.csproj", "{1E1EB82B-404D-42C1-B881-9053382B54BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainTimeTable.Api.EfDao", "TrainTimeTable.Api.EfDao\TrainTimeTable.Api.EfDao.csproj", "{A8128254-D035-439C-AB70-0C7B3CB08FB0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0979021F-1984-4207-8C3E-790B66FD69F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0979021F-1984-4207-8C3E-790B66FD69F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0979021F-1984-4207-8C3E-790B66FD69F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0979021F-1984-4207-8C3E-790B66FD69F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AC5E42-9491-4B39-8A58-E7B4FEE78459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AC5E42-9491-4B39-8A58-E7B4FEE78459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AC5E42-9491-4B39-8A58-E7B4FEE78459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AC5E42-9491-4B39-8A58-E7B4FEE78459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE4BE6E7-0AA3-43EB-BD48-14D8AC9B4D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE4BE6E7-0AA3-43EB-BD48-14D8AC9B4D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE4BE6E7-0AA3-43EB-BD48-14D8AC9B4D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE4BE6E7-0AA3-43EB-BD48-14D8AC9B4D63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE5B258-6CB2-4906-A590-31717F29D6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE5B258-6CB2-4906-A590-31717F29D6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE5B258-6CB2-4906-A590-31717F29D6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE5B258-6CB2-4906-A590-31717F29D6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E1EB82B-404D-42C1-B881-9053382B54BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1EB82B-404D-42C1-B881-9053382B54BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1EB82B-404D-42C1-B881-9053382B54BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1EB82B-404D-42C1-B881-9053382B54BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8128254-D035-439C-AB70-0C7B3CB08FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8128254-D035-439C-AB70-0C7B3CB08FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8128254-D035-439C-AB70-0C7B3CB08FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8128254-D035-439C-AB70-0C7B3CB08FB0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2AC5E42-9491-4B39-8A58-E7B4FEE78459} = {8A8F8B60-239E-43DB-99A1-4F56F46C71FE}
+	EndGlobalSection
+EndGlobal
