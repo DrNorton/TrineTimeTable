@@ -15,13 +15,82 @@ namespace EcrParser
     {
         private static List<CsvModel> _coord;
 
-        static void Main(string[] args)
+        static  void Main(string[] args)
         {
-            Parse();
+             Go();
             Console.ReadLine();
         }
 
-        static async Task Parse()
+        public static async Task Go()
+        {
+            var parsed = await Parse();
+            Insert(parsed);
+         
+        }
+
+        private static void Insert(List<EcrModel> parsed)
+        {
+            try
+            {
+                var test = parsed.Select(x => x.StationImageUrl).Distinct();
+                var context = new traintimetable_dbEntities();
+                //  AddTypes(test);
+
+                foreach (var ecrModel in parsed)
+                {
+
+                    var newStation = new Station()
+                    {
+                        Ecr = ecrModel.Ecr,
+                        ExpressCode = ecrModel.ExpressCode,
+                        OpenStreetMapNode = ecrModel.OpenStreetMapNode,
+                        StationName = ecrModel.StationName,
+                        StationType = context.StationTypes.FirstOrDefault(x => x.Name == ecrModel.StationImageUrl),
+                        OpenStreetMapUrl = ecrModel.OpenStreetMapUrl,
+                        
+
+                    };
+                    if (ecrModel.Position != null)
+                    {
+                        newStation.Position = new Position()
+                        {
+                            Latitude = ecrModel.Position.Latitude,
+                            Longitude = ecrModel.Position.Longitude
+                        };
+                    }
+                    else
+                    {
+                        newStation.Position = new Position()
+                        {
+                            Latitude = 0,
+                            Longitude = 0
+                        };
+                    }
+                    context.Stations.Add(newStation);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                
+            }
+           
+        }
+
+        private static void AddTypes(IEnumerable<string> types )
+        {
+            var context = new traintimetable_dbEntities();
+            foreach (var t in types)
+            {
+                context.StationTypes.Add(new StationType() { Name = t });
+                context.SaveChanges();
+            }
+           
+        
+        
+        }
+
+        static async Task<List<EcrModel>> Parse()
         {
             _coord=new List<CsvModel>();
             using (var csvReader=new StreamReader("Coordinates.txt"))
@@ -110,6 +179,8 @@ namespace EcrParser
                 {
                     Console.WriteLine(res.StationName);
                 }
+
+                return resultList;
             }
         
         }
@@ -130,7 +201,7 @@ namespace EcrParser
                         result.OpenStreetMapUrl = test;
                         result.OpenStreetMapNode = long.Parse(test.Replace(@"http://www.openstreetmap.org/browse/node/", "").Replace(@"http://www.openstreetmap.org/browse/way/",""));
                         result.Position=new Geometry();
-                        var geom=_coord.FirstOrDefault(x => x.Esr.Equals(result.Ecr));
+                        var geom=_coord.FirstOrDefault(x => x.Esr.Equals(result.Ecr.ToString()));
                         if (geom != null)
                         {
                             result.Position.Latitude = geom.Lat;
@@ -179,11 +250,11 @@ namespace EcrParser
                 {
                     if (index == 0)
                     {
-                        model.Ecr = hy.InnerText;
+                        model.Ecr = long.Parse(hy.InnerText);
                     }
                     else
                     {
-                        model.ExpressCode = hy.InnerText;
+                        model.ExpressCode = long.Parse(hy.InnerText);
                     }
                     index++;
                 }

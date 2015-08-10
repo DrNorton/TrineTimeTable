@@ -1,0 +1,11 @@
+﻿Generated model file: EntityContext.edmx.
+Loading metadata from the database took 00:00:08.9325942.
+Generating the model took 00:00:24.1706208.
+Added the connection string to the App.Config file.
+Writing the .edmx file took 00:00:00.0007156.
+Generated model file: EntityContext.edmx.
+Loading metadata from the database took 00:00:01.0899805.
+Generating the model took 00:00:16.6252210.
+Generated model file: EntityContext.edmx.
+Loading metadata from the database took 00:00:00.9053045.
+Generating the model took 00:00:01.0826895.

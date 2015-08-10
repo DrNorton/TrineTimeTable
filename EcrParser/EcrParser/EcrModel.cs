@@ -8,9 +8,9 @@ namespace EcrParser
 {
     public class EcrModel
     {
-        public string Ecr { get; set; }
+        public long Ecr { get; set; }
         public string StationImageUrl { get; set; }
-        public string ExpressCode { get; set; }
+        public long ExpressCode { get; set; }
         public string StationName { get; set; }
         public Geometry Position { get; set; }
         public int RegionId { get; set; }
