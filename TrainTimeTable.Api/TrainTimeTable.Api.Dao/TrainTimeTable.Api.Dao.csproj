@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IStationRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrainTimeTable.Api.Dto\TrainTimeTable.Api.Dto.csproj">

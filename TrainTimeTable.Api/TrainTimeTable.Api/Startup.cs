@@ -1,13 +1,13 @@
 ﻿using System.Web.Http;
 using Castle.Windsor;
+using Microsoft.Owin.Security.OAuth;
 using Owin;
+using TrainTimeTable.Api.Dependencies;
 
 namespace TrainTimeTable.Api
 {
     public class Startup
     {
-
-
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
@@ -26,8 +26,8 @@ namespace TrainTimeTable.Api
         public void ConfigureOAuth(IAppBuilder app, IWindsorContainer container)
         {
             //// Token Generation
-            app.UseOAuthAuthorizationServer(container.Resolve<OAuthAuthorizationServerOptions>());
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
+           // app.UseOAuthAuthorizationServer(container.Resolve<OAuthAuthorizationServerOptions>());
+            //app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
         }
 

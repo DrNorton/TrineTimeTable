@@ -34,8 +34,8 @@ namespace EcrParser
             {
                 var test = parsed.Select(x => x.StationImageUrl).Distinct();
                 var context = new traintimetable_dbEntities();
-                //  AddTypes(test);
-
+                  AddTypes(test);
+                var count = 0;
                 foreach (var ecrModel in parsed)
                 {
 
@@ -68,6 +68,7 @@ namespace EcrParser
                     }
                     context.Stations.Add(newStation);
                     context.SaveChanges();
+                    Console.WriteLine(count++);
                 }
             }
             catch (Exception e)
@@ -93,7 +94,7 @@ namespace EcrParser
         static async Task<List<EcrModel>> Parse()
         {
             _coord=new List<CsvModel>();
-            using (var csvReader=new StreamReader("Coordinates.txt"))
+            using (var csvReader=new StreamReader("Coordinates.txt",Encoding.UTF8))
             {
                 try
                 {
