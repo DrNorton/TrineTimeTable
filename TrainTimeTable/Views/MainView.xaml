@@ -8,63 +8,44 @@
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <Hub>
-            <Hub.Header>
-                <!-- Back button and page title -->
-                <Grid Margin="0,20,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+    <RelativePanel x:Name="LayoutRoot" HorizontalAlignment="Stretch"
+               Margin="20">
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="Panel.(RelativePanel.RightOf)"
+                Value="Cont" />
+                    </VisualState.Setters>
+                </VisualState>
+                
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                     <Setter Target="Panel.(RelativePanel.Below)"
+                Value="Cont" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
        
-                    <TextBlock  Text="Электрички Москвы"  Grid.Column="1" 
-                       IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Top"/>
-                </Grid>
-            </Hub.Header>
-            <HubSection Header="Images" Margin="80,0,0,0">
-                <DataTemplate>
-                    <GridView x:Name="ImagesGrid"  SelectionMode="None">
-                        <GridView.ItemTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding}" Width="300" Height="250" Stretch="UniformToFill" Margin="5"/>
-                            </DataTemplate>
-                        </GridView.ItemTemplate>
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid MaximumRowsOrColumns="3" />
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                    </GridView>
-                </DataTemplate>
-            </HubSection>
-            <HubSection Header="ListView">
-                <DataTemplate>
-                    <ListView x:Name="ListView1" SelectionMode="None" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Image}" Width="80" Height="60"/>
-                                    <StackPanel Orientation="Vertical" Background="LightGray" Width="150">
-                                        <TextBlock Text="{Binding Name}" FontSize="14.667" FontFamily="Segoe UI" Margin="5,0,0,0"/>
-                                        <TextBlock Text="{Binding Color}" FontSize="12" FontFamily="Segoe UI" Margin="5,0,0,0"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </DataTemplate>
-            </HubSection>
-          
-            <HubSection Header="Form Controls">
-                <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                      
-                    </StackPanel>
-                </DataTemplate>
-            </HubSection>
-        </Hub>
-    </Grid>
+        <TextBlock Text="Привет" x:Name="Cont"/>
+        
+        <Border x:Name="Panel"  Background="Black" BorderBrush="White" BorderThickness="2">
+                <TextBlock Text="Привет 22 22 2 "/>
+        </Border>
+
+    </RelativePanel>
+
 
 
 </views:MvxWindowsPage>

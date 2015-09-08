@@ -10,16 +10,22 @@ namespace TrainTimeTable.Api.EfDao.Repositories
 {
     public class StationRepository : IStationRepository
     {
-        private readonly TrainTimeTableContext _context;
+        private readonly traintimetable_dbEntities _context;
 
-        public StationRepository(TrainTimeTableContext context)
+        public StationRepository(traintimetable_dbEntities context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<StationDto>> GetStations()
+        public async Task<IEnumerable<StationDto>> SearchStationByName(string pattern)
         {
-            return _context.Set<Station>().ToList().Select(x => new StationDto() {Ecr = x.Ecr,ExpressCode=x.ExpressCode,StationName = x.StationName});
+            return _context.Stations.Where(x=>x.StationName.ToLower().Contains(pattern.ToLower())).Select(x => new StationDto() {Ecr = x.Ecr,ExpressCode=x.ExpressCode,StationName = x.StationName});
+        }
+
+
+        public async Task<IEnumerable<StationDto>> GetAllStations()
+        {
+            return _context.Stations.Where(x=>x.Position.Latitude!=null && x.Position.Longitude!=null).Select(x => new StationDto() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, StationName = x.StationName,Position = new PositionDto() {Latitude = x.Position.Latitude,Longitude = x.Position.Longitude} }).ToList();
         }
     }
 }

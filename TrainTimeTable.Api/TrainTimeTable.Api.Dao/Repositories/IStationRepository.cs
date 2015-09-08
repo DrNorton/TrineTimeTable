@@ -6,6 +6,7 @@ namespace TrainTimeTable.Api.Dao.Repositories
 {
     public interface IStationRepository
     {
-        Task<IEnumerable<StationDto>> GetStations();
+        Task<IEnumerable<StationDto>> SearchStationByName(string pattern);
+        Task<IEnumerable<StationDto>> GetAllStations();
     }
 }

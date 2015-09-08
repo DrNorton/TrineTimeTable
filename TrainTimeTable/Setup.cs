@@ -5,10 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
+using TrainTimeTable.Services;
 using TrainTimeTable.Shared;
+using TrainTimeTable.Shared.Models;
+using TrainTimeTable.Shared.Services;
+using TrainTimeTable.Shared.ViewModels;
+using TrainTimeTable.Shared.ViewModels.Map;
+using TrainTimeTable.Shared.ViewModels.Shedule;
 
 namespace TrainTimeTable
 {
@@ -20,13 +27,50 @@ namespace TrainTimeTable
 
         protected override IMvxApplication CreateApp()
         {
-            return new MainSetup();
+            var mainSetup=new MainSetup();
+            CreateMenu();
+            RegisterServices();
+            return mainSetup;
+        }
+
+        private void RegisterServices()
+        {
+            Mvx.RegisterType<IPositionReceiver, PositionReceiver>();
         }
 
         protected override IMvxTrace CreateDebugTrace()
         {
             return new DebugTrace();
         }
+
+        private void CreateMenu()
+        {
+           var navlist = new List<NavMenuItem>(
+           new[]
+           {
+               new NavMenuItem()
+                {
+                    Symbol = (int)Symbol.Home,
+                    Label = "Главная",
+                    ViewModelType= typeof(MainViewModel)
+                },
+                new NavMenuItem()
+                {
+                    
+                    Symbol = (int)Symbol.Calendar,
+                    Label = "Расписание",
+                    ViewModelType= typeof(SheduleWizardViewModel)
+                },
+                new NavMenuItem()
+                {
+                    Symbol = (int)Symbol.Map,
+                    Label = "Карта",
+                    ViewModelType= typeof(MapViewModel)
+                }
+                
+           });
+            Mvx.RegisterSingleton(typeof(List<NavMenuItem>),navlist);
+    }
     }
 
     public class DebugTrace : IMvxTrace

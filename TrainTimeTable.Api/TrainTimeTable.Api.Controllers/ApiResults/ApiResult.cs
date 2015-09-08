@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -49,7 +50,6 @@ namespace TrainTimeTable.Api.Controllers.ApiResults
         {
             var response = new HttpResponseMessage(HttpStatusCode.OK)
             {
-                
                 Content = new StringContent(JsonConvert.SerializeObject(this),Encoding.UTF8),
                 RequestMessage = _request
             };

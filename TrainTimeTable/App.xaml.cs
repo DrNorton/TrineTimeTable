@@ -69,16 +69,6 @@ namespace TrainTimeTable
                 }
             }
 
-            if (this.shell == null)
-            {
-                // create new shell
-                this.shell = new ShellView(rootFrame);
-            }
-
-
-            // Place the shell with frame as content in the current Window
-
-            Window.Current.Content = shell;
 
 
             if (rootFrame.Content == null)
@@ -92,6 +82,18 @@ namespace TrainTimeTable
                 var start = Mvx.Resolve<IMvxAppStart>();
                 start.Start();
             }
+
+
+            if (this.shell == null)
+            {
+                // create new shell
+                this.shell = new ShellView(rootFrame);
+            }
+
+
+            // Place the shell with frame as content in the current Window
+
+            Window.Current.Content = shell;
 
             // Ensure the current window is active
             Window.Current.Activate();

@@ -260,12 +260,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1905,12 +1924,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3583,12 +3621,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -5266,12 +5323,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6944,12 +7020,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8627,12 +8722,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -10305,12 +10419,31 @@
           "lib/win81/Cirrious.MvvmCross.dll": {}
         }
       },
+      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+        "dependencies": {
+          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
+        },
+        "compile": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        },
+        "runtime": {
+          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
+        }
+      },
       "MvvmCross.PortableSupport/3.5.1": {
         "compile": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
         },
         "runtime": {
           "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -12454,6 +12587,32 @@
         "[Content_Types].xml"
       ]
     },
+    "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
+      "sha512": "kmHqmI2LRKOV8BNKvd0Q15F9a9+xq3uPIVJC+xuOpqHDYOf4tqgkvpco246XguPnZCsSrL/nlWartxnc8+jfTQ==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "MvvmCross.HotTuna.Plugin.Messenger.nuspec",
+        "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "lib/net45/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/net45/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/netcore45/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/netcore45/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/wp8/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/wp8/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/win81/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/wpa81/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/wpa81/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/portable-win81+wpa81/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "lib/MonoAndroid/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/MonoAndroid/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Plugins.Messenger.dll",
+        "content/Xamarin.iOS10/Bootstrap/MessengerPluginBootstrap.cs.pp",
+        "package/services/metadata/core-properties/8d3262005161445d929d9e629c2fab3e.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
     "MvvmCross.PortableSupport/3.5.1": {
       "sha512": "xKG3JF7jJnDVo+OhOFP2D+IY8j4LskJFWqucaTqLpRk9pxgK62xb8V419xuL7d21ySeMl/bc+S+TeGHk2TXyiA==",
       "type": "Package",
@@ -12462,6 +12621,29 @@
         "MvvmCross.PortableSupport.nuspec",
         "lib/portable-win+net45+wp8+win8+wpa81/_._",
         "package/services/metadata/core-properties/36b4a69a5d1841c0bc1ca3bfa25da652.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Newtonsoft.Json/7.0.1": {
+      "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "tools/install.ps1",
+        "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15167,7 +15349,9 @@
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "MvvmCross.HotTuna.MvvmCrossLibraries >= 3.5.1"
+      "MvvmCross.HotTuna.MvvmCrossLibraries >= 3.5.1",
+      "MvvmCross.HotTuna.Plugin.Messenger >= 3.5.1",
+      "Newtonsoft.Json >= 7.0.1"
     ],
     "UAP,Version=v10.0": []
   }

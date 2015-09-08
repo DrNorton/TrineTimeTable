@@ -5,8 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+using TrainTimeTable.ApiClient;
+using TrainTimeTable.ApiClient.Executer;
+using TrainTimeTable.ApiClient.Facade;
+using TrainTimeTable.Shared.Services;
 using TrainTimeTable.Shared.ViewModels;
-using TrainTimeTable.Shared.ViewModels.Favorites;
+using TrainTimeTable.Shared.ViewModels.Map;
+using TrainTimeTable.Shared.ViewModels.Shedule;
 
 namespace TrainTimeTable.Shared
 {
@@ -14,10 +19,29 @@ namespace TrainTimeTable.Shared
     {
         public override void Initialize()
         {
-            Mvx.RegisterType<ShellViewModel, ShellViewModel>();
-            Mvx.RegisterType<AddToFavoritesViewModel, AddToFavoritesViewModel>();
-            Mvx.RegisterType<MainViewModel, MainViewModel>();
+            RegisterViewModels();
+            RegisterApi();
             RegisterAppStart(new CustomAppStart());
+            
+        
+            Cirrious.MvvmCross.Plugins.Messenger.PluginLoader.Instance.EnsureLoaded();
+        }
+
+       
+
+        private static void RegisterViewModels()
+        {
+            Mvx.RegisterType<ShellViewModel, ShellViewModel>();
+            Mvx.RegisterType<MainViewModel, MainViewModel>();
+            Mvx.RegisterType<SheduleWizardViewModel, SheduleWizardViewModel>();
+            Mvx.RegisterType<MapViewModel, MapViewModel>();
+        }
+
+        private static void RegisterApi()
+        {
+            Mvx.RegisterType<IApiSettings, Settings>();
+            Mvx.RegisterType<IApiExecuter, ApiExecuter>();
+            Mvx.RegisterType<IApiFacade, ApiFacade>();
         }
     }
 }

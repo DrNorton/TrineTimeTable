@@ -6,14 +6,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using TrainTimeTable.Shared.Models;
 using TrainTimeTable.Shared.ViewModels.Base;
+using TrainTimeTable.Shared.ViewModels.Map;
+using TrainTimeTable.Shared.ViewModels.Shedule;
 
 namespace TrainTimeTable.Shared.ViewModels
 {
     public class ShellViewModel : LoadingScreen
     {
+        private  List<NavMenuItem> _menu;
+        private NavMenuItem _selectedItem;
         private ICommand _goHomeCommand;
-        private ICommand _goToGroupsCommand;
+        private ICommand _goToSheduleCommand;
+        private ICommand _goToMapCommand;
+       
 
         public ICommand GoHomeCommand
         {
@@ -24,22 +31,49 @@ namespace TrainTimeTable.Shared.ViewModels
             }
         }
 
-
-
-
-
-        public ICommand GoToGroupsCommand
+        public ICommand GoToSheduleCommand
         {
             get
             {
-                _goToGroupsCommand = _goToGroupsCommand ?? new MvxCommand(GoToGroups);
-                return _goToGroupsCommand;
+                _goToSheduleCommand = _goToSheduleCommand ?? new MvxCommand(GoToShedule);
+                return _goToSheduleCommand;
             }
         }
 
-        private void GoToGroups()
+       
+
+        public NavMenuItem SelectedItem
         {
-          //  ShowViewModel<GroupsViewModel>();
+            get { return _selectedItem; }
+            set
+            {
+                _selectedItem = value;
+                if(value!=null)
+                  Navigate(value);
+                base.RaisePropertyChanged(()=>SelectedItem);
+            }
+        }
+
+        public List<NavMenuItem> Menu
+        {
+            get { return _menu; }
+            set
+            {
+                _menu = value;
+                base.RaisePropertyChanged(()=>Menu);
+            }
+        }
+
+        private void Navigate(NavMenuItem value)
+        {
+            
+            ShowViewModel(value.ViewModelType);
+        }
+
+
+        private void GoToShedule()
+        {
+            ShowViewModel<SheduleWizardViewModel>();
         }
 
         private void GoHome()
@@ -47,8 +81,9 @@ namespace TrainTimeTable.Shared.ViewModels
             ShowViewModel<MainViewModel>();
         }
 
-        public ShellViewModel()
+        public ShellViewModel(List<NavMenuItem> menu)
         {
+            _menu = menu;
             Debug.WriteLine("dad");
         }
     }

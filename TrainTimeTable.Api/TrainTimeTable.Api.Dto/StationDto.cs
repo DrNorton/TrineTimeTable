@@ -11,5 +11,8 @@ namespace TrainTimeTable.Api.Dto
         public long Ecr { get; set; }
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
+
+        public PositionDto Position { get; set; }
+        
     }
 }

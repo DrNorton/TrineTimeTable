@@ -11,7 +11,7 @@ namespace TrainTimeTable.Api.Dependencies.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<TrainTimeTableContext>().LifestyleTransient());
+            container.Register(Component.For<traintimetable_dbEntities>().LifestyleTransient());
             container.Register(Component.For<IStationRepository, StationRepository>().LifestyleTransient());
         }
     }

@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="227ad38c525249f4a2cb2cfec74bafe4" Name="Diagram1">
-        <EntityTypeShape EntityType="TrainTimeTableModel.Position" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="TrainTimeTableModel.Station" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="TrainTimeTableModel.StationType" Width="1.5" PointX="0.75" PointY="5.625" />
-        <AssociationConnector Association="TrainTimeTableModel.FK_Stations_ToPositions" />
-        <AssociationConnector Association="TrainTimeTableModel.FK_Stations_ToStationTypes" />
+      <Diagram DiagramId="1aa7072e48b34405a52bba892eaa7592" Name="Diagram1">
+        <EntityTypeShape EntityType="TrainTimeTableModel.Position" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainTimeTableModel.Station" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TrainTimeTableModel.StationType" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="TrainTimeTableModel.FK_Stations_ToPositions" ManuallyRouted="false" />
+        <AssociationConnector Association="TrainTimeTableModel.FK_Stations_ToStationTypes" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
