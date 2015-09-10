@@ -51,17 +51,7 @@ namespace TrainTimeTable.Views.Map
              CreateOverlayMethod();
         }
 
-        private void CreateLayer()
-        {
-            var dataSource = new HttpMapTileDataSource(
-                "http://a.tile.openstreetmap.org/{zoomlevel}/{x}/{y}.png");
-            var ts = new MapTileSource(dataSource)
-            {
-                Layer = MapTileLayer.BackgroundReplacement,
-                IsTransparencyEnabled = true
-            };
-            _mapControl.TileSources.Add(ts);
-        }
+       
 
         private void CreateOverlayMethod()
         {
@@ -77,26 +67,7 @@ namespace TrainTimeTable.Views.Map
 
        
 
-        // Create the custom tiles.
-        // This example creates red tiles that are partially opaque.
-        private async Task<RandomAccessStreamReference> CreateBitmapAsStreamAsync(string url)
-        {
-            var ass = await new HttpClient().GetByteArrayAsync(new Uri(url));
-           
-            // Create RandomAccessStream from byte array
-            InMemoryRandomAccessStream randomAccessStream =
-                new InMemoryRandomAccessStream();
-            IOutputStream outputStream = randomAccessStream.GetOutputStreamAt(0);
-            DataWriter writer = new DataWriter(outputStream);
-            writer.WriteBytes(ass);
-            await writer.StoreAsync();
-            await writer.FlushAsync();
-            return RandomAccessStreamReference.CreateFromStream(randomAccessStream);
-
-        }
-
-    
-
+        
         public ObservableCollection<StationModel> Positions
         {
             get { return _positions; }

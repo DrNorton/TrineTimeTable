@@ -40,14 +40,14 @@ namespace TrainTimeTable.Views.Map
         {
             this.InitializeComponent();
             var messenger=Mvx.Resolve<IMvxMessenger>();
-            _mapMapManager=new MapManager(this.MapControl);
+            //_mapMapManager=new MapManager(this.MapControl);
            _token= messenger.Subscribe<AllStationWithLocationMessage>(OnGeoListReceived);
             _token2 = messenger.Subscribe<SetMyPositionMessage>(SetMyPositionOnMap);
         }
 
         private void SetMyPositionOnMap(SetMyPositionMessage obj)
         {
-            _mapMapManager.SetMyPosition(obj.Position);
+          //  _mapMapManager.SetMyPosition(obj.Position);
 
         }
 
@@ -63,7 +63,7 @@ namespace TrainTimeTable.Views.Map
 
         private void OnGeoListReceived(AllStationWithLocationMessage obj)
         {
-            _mapMapManager.AddStationsToMap(obj.Stations);
+           // _mapMapManager.AddStationsToMap(obj.Stations);
         }
 
        

@@ -13,42 +13,46 @@
     <views:MvxWindowsPage.Resources>
         <converters:GeoPointModelToGeoPointConverter x:Key="GeoPointModelToGeoPointConverter"/>
     </views:MvxWindowsPage.Resources>
+    
     <Page.BottomAppBar>
         <CommandBar   FlowDirection="RightToLeft">
             <AppBarButton Label="Delete Item" Icon="Delete" />
         </CommandBar>
     </Page.BottomAppBar>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-     
-        <maps:MapControl MapServiceToken="l6AOGVgaf0DIlLuOEOum~ysMXqmfV9te9mCzpSy1QHA~AsNLrgOgd3BHryIGeusH0s4--NnOwoiAT6Pc56ilxJPflOrSOF1CN1h0BaimBW1g"  Background="White" x:Name="MapControl" ZoomLevel="{Binding ZoomLevel,Mode=TwoWay}" Center="{Binding CenterPoint,Mode=TwoWay,Converter={StaticResource GeoPointModelToGeoPointConverter}}">
-            <maps:MapItemsControl ItemsSource="{Binding ElementName=MapV,Path=MapManager.Positions}" x:Name="MapItemsControl">
-                 <maps:MapItemsControl.ItemTemplate>
-                     <DataTemplate>
-                         <Border Width="300" Height="100" Background="White" BorderBrush="Black" BorderThickness="3">
-                            <TextBlock maps:MapControl.NormalizedAnchorPoint="-140,-140" Foreground="Black" maps:MapControl.Location="{Binding Position,Mode=TwoWay,Converter={StaticResource GeoPointModelToGeoPointConverter}}" FontSize="25" Text="{Binding StationName}"/>
-                        </Border>
-                    </DataTemplate>
-                 </maps:MapItemsControl.ItemTemplate>
-             </maps:MapItemsControl>
-        </maps:MapControl>
+    
+  <RelativePanel >
+        
+        <TextBlock Text="This is a header" Name="header" Style="{ThemeResource HeaderTextBlockStyle}"></TextBlock>
 
-        <Grid HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center">
-            <Border Opacity="0.5" Padding="10"   Background="#171717">
-            </Border>
-            <ItemsControl  Margin="10" ItemsSource="{Binding MapPanelItems,Mode=TwoWay}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Command="{Binding Command}" Padding="10"  Margin="0,0,0,10">
-                            <FontIcon   FontSize="20" Glyph="{Binding SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Label}"/>
-                        </Button>
 
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
 
-            </ItemsControl>
+        <TextBlock Text="This is a text about drones." RelativePanel.Below="header" Margin="10,0,10,0" TextWrapping="Wrap"   Name="text"></TextBlock>
+        <Grid x:Name="Map" RelativePanel.RightOf="text" RelativePanel.AlignTopWith="text"  >
+            <maps:MapControl    MapServiceToken="l6AOGVgaf0DIlLuOEOum~ysMXqmfV9te9mCzpSy1QHA~AsNLrgOgd3BHryIGeusH0s4--NnOwoiAT6Pc56ilxJPflOrSOF1CN1h0BaimBW1g"  Background="White" x:Name="MapControl" ZoomLevel="{Binding ZoomLevel,Mode=TwoWay}" Center="{Binding CenterPoint,Mode=TwoWay,Converter={StaticResource GeoPointModelToGeoPointConverter}}">
+                <maps:MapItemsControl ItemsSource="{Binding ElementName=MapV,Path=MapManager.Positions}" x:Name="MapItemsControl">
+
+                </maps:MapItemsControl>
+            </maps:MapControl>
+
+            <Grid HorizontalAlignment="Right" Margin="10" VerticalAlignment="Center">
+                <Border Opacity="0.5" Padding="10"   Background="#171717">
+                </Border>
+                <ItemsControl  Margin="10" ItemsSource="{Binding MapPanelItems,Mode=TwoWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding Command}" Padding="10"  Margin="0,0,0,10">
+                                <FontIcon   FontSize="20" Glyph="{Binding SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{Binding Label}"/>
+                            </Button>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+            </Grid>
+
         </Grid>
-       
-           
-       
-    </Grid>
+
+      
+    </RelativePanel>
+
 </views:MvxWindowsPage>
