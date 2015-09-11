@@ -22,11 +22,17 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
         private DateTimeOffset _selectDate;
         public ICommand FindCommand { get; set; }
 
+
         public SheduleWizardViewModel(IApiFacade apiFacade)
         {
             _apiFacade = apiFacade;
            FindCommand=new MvxCommand(async ()=> await Find());
             _selectDate=new DateTimeOffset(DateTime.Now);
+        }
+
+        public SheduleWizardViewModel()
+        {
+             
         }
 
         public async Task<int> Find()

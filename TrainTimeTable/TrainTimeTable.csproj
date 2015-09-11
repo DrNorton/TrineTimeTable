@@ -108,6 +108,7 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AlternateConverter.cs" />
     <Compile Include="Converters\DateTimeStringFormatConverter.cs" />
     <Compile Include="Converters\GeoPointModelToGeoPointConverter.cs" />
     <Compile Include="Converters\SecundsToMinutesConverter.cs" />

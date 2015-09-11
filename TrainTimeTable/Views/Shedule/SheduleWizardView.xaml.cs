@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -25,6 +26,11 @@ namespace TrainTimeTable.Views.Shedule
     /// </summary>
     public sealed partial class SheduleWizardView : MvxWindowsPage
     {
+
+        private List<SolidColorBrush> brushes = new List<SolidColorBrush> { new SolidColorBrush(Colors.DarkGray), new SolidColorBrush(Colors.Gray) };
+        public List<SolidColorBrush> Brushes { get { return brushes; } }
+
+
         public SheduleWizardView()
         {
             this.InitializeComponent();

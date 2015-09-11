@@ -24,7 +24,12 @@ namespace TrainTimeTable.Shared.ViewModels.Map
         private List<StationResponse> _allStations;
         private PositionDto _centerPoint;
         private double _zoomLevel=14;
-        private List<MapPanelItem> _mapPanelItems; 
+        private List<MapPanelItem> _mapPanelItems;
+
+        public MapViewModel()
+        {
+            
+        }
 
         public MapViewModel(IApiFacade apiFacade, IMvxMessenger messenger,IPositionReceiver positionReceiver)
         {
