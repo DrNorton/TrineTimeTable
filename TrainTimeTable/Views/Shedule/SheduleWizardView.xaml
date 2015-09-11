@@ -15,76 +15,16 @@
         <converters:SecundsToMinutesConverter x:Key="SecundsToMinutesConverter"/>
 
         <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
-            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="TabNavigation" Value="Local"/>
             <Setter Property="IsHoldingEnabled" Value="True"/>
-            <Setter Property="Margin" Value="10,0,10,0"/>
-            <Setter Property="Padding" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Top"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListViewItem">
-                        <Grid Background="{TemplateBinding Background}">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="SelectionStates">
-                                    <VisualStateGroup.Transitions>
-                                        <VisualTransition GeneratedDuration="0:0:0.2">
-                                            <VisualTransition.GeneratedEasingFunction>
-                                                <CubicEase EasingMode="EaseOut"/>
-                                            </VisualTransition.GeneratedEasingFunction>
-                                        </VisualTransition>
-                                    </VisualStateGroup.Transitions>
-                                    <VisualState x:Name="UnselectedSwiping">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionBackground" d:IsOptimized="True"/>
-                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="UnselectedPointerOver"/>
-                                    <VisualState x:Name="Selecting">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionBackground" d:IsOptimized="True"/>
-                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Selected">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionBackground" d:IsOptimized="True"/>
-                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionCheck" d:IsOptimized="True"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="SelectedSwiping">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionBackground" d:IsOptimized="True"/>
-                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Unselecting"/>
-                                    <VisualState x:Name="Unselected"/>
-                                    <VisualState x:Name="SelectedUnfocused">
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionBackground" d:IsOptimized="True"/>
-                                            <ColorAnimation Duration="0" To="White" Storyboard.TargetProperty="(ContentPresenter.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
-                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SelectionCheck" d:IsOptimized="True"/>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="SelectionBackground" Background="{ThemeResource ListBoxItemSelectedBackgroundThemeBrush}" Opacity="0"/>
-                            <ContentPresenter  x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                            <TextBlock x:Name="SelectionCheck" Foreground="White" FontSize="16" FontFamily="Segoe UI Symbol" HorizontalAlignment="Left" Margin="6" Opacity="0" Text="✔" VerticalAlignment="Center"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+          
         </Style>
     </views:MvxWindowsPage.Resources>
 
-    <Grid  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Margin="0,25,0,0"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
@@ -117,7 +57,6 @@
         </AutoSuggestBox>
 
 
-
         <DatePicker Header="Когда"  YearVisible="False" Date="{Binding SelectDate, Mode=TwoWay}"  VerticalAlignment="Center"   Margin="10"   Grid.Row="2" Grid.Column="0"/>
         <Button  Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,28,0,0"  Command="{Binding FindCommand}" Content="Найти!"/>
         <ListView ItemContainerStyle="{StaticResource ListViewItemStyle}" x:Name="sheduleList" HorizontalContentAlignment="Stretch" DataContext="{Binding Shedule}" ItemsSource="{Binding TrainTreads, Mode=TwoWay}" Grid.Row="3"  Grid.ColumnSpan="2">
@@ -129,15 +68,25 @@
             
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="-5" Background="{Binding Converter={StaticResource AlternateConverter}}">
+                    <Grid  Background="{Binding Converter={StaticResource AlternateConverter}}">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                           
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Arrival, ConverterParameter=HH:mm, Converter={StaticResource DateTimeStringFormatConverter}}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Departure, ConverterParameter=HH:mm, Converter={StaticResource DateTimeStringFormatConverter}}"/>
-                        <TextBlock Grid.Column="2" Text="{Binding Duration, Converter={StaticResource SecundsToMinutesConverter}}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Margin="5" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Grid.Column="0" Text="{Binding Arrival, ConverterParameter=HH:mm, Converter={StaticResource DateTimeStringFormatConverter}}"/>
+                        <TextBlock Margin="5" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Grid.Column="0" Text="{Binding Departure, ConverterParameter=HH:mm, Converter={StaticResource DateTimeStringFormatConverter}}"/>
+                        <StackPanel Grid.RowSpan="2" Grid.Column="1">
+                            <TextBlock Margin="5" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding TrainTitle,Mode=TwoWay}"/>
+                            <TextBlock Margin="5" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"  Text="{Binding Stops,Mode=TwoWay}"/>
+                        </StackPanel>
+                       
+                        <TextBlock Margin="5" Grid.RowSpan="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Text="{Binding Duration, Converter={StaticResource SecundsToMinutesConverter}}"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
