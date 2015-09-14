@@ -13,8 +13,8 @@ namespace TrainTimeTableMigrations
                 name: "Blog",
                 columns: table => new
                 {
-                    BlogId = table.Column(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    BlogId = table.Column(type: "INTEGER", nullable: false),
+                      //  .Annotation("Sqlite:Autoincrement", true),
                     Url = table.Column(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
@@ -25,8 +25,8 @@ namespace TrainTimeTableMigrations
                 name: "Post",
                 columns: table => new
                 {
-                    PostId = table.Column(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    PostId = table.Column(type: "INTEGER", nullable: false),
+                     //   .Annotation("Sqlite:Autoincrement", true),
                     BlogId = table.Column(type: "INTEGER", nullable: false),
                     Content = table.Column(type: "TEXT", nullable: true),
                     Title = table.Column(type: "TEXT", nullable: true)
