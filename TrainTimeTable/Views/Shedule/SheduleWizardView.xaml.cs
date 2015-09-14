@@ -26,10 +26,8 @@ namespace TrainTimeTable.Views.Shedule
     /// </summary>
     public sealed partial class SheduleWizardView : MvxWindowsPage
     {
-
         private List<SolidColorBrush> brushes = new List<SolidColorBrush> { new SolidColorBrush(Colors.Transparent), new SolidColorBrush(new Color() { R = 23, G = 23, B = 23, A = 255 }) };
         public List<SolidColorBrush> Brushes { get { return brushes; } }
-
 
         public SheduleWizardView()
         {

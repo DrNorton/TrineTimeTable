@@ -50,6 +50,7 @@ namespace TrainTimeTable
            {
                new NavMenuItem()
                 {
+                   
                     Symbol = (int)Symbol.Home,
                     Label = "Главная",
                     ViewModelType= typeof(MainViewModel)

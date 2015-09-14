@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,59 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
         private List<StationResponse> _fromSuggestionStations;
         private string _toPattern;
         private string _fromPattern;
-        private TrainShedules _shedule;
+        private ObservableCollection<TrainTread> _trainThreads;
         private DateTimeOffset _selectDate;
-        public ICommand FindCommand { get; set; }
+        private List<TrainTread> _allTrainsThreads;
+        private bool _isAll=false;
+        private string _hideUnusedText;
 
+        public ICommand FindCommand { get; set; }
+        public ICommand HideUnusedCommand { get; set; }
+        public ICommand AddToFavoritesCommand { get; set; }
 
         public SheduleWizardViewModel(IApiFacade apiFacade)
         {
             _apiFacade = apiFacade;
            FindCommand=new MvxCommand(async ()=> await Find());
+            AddToFavoritesCommand=new MvxCommand(()=>AddToFavorites());
+            HideUnusedCommand=new MvxCommand(() =>
+            {
+                _isAll = !_isAll;
+                ShowAndHideUnused();
+                SetHideUnusedText();
+            });
             _selectDate=new DateTimeOffset(DateTime.Now);
+            SetHideUnusedText();
+        }
+
+        private void AddToFavorites()
+        {
+            
+        }
+
+        private void SetHideUnusedText()
+        {
+            if (_isAll)
+            {
+                HideUnusedText = "Скрыть ушедшие электрички";
+            }
+            else
+            {
+                HideUnusedText = "Показать ушедшие электрички";
+            }
+        }
+
+        private void ShowAndHideUnused()
+        {
+            if (_isAll)
+            {
+                TrainTreads = new ObservableCollection<TrainTread>(_allTrainsThreads);
+            }
+            else
+            {
+                TrainTreads = new ObservableCollection<TrainTread>(_allTrainsThreads.Where(x => x.Arrival > DateTime.Now).ToList());
+            }
+          
         }
 
         public SheduleWizardViewModel()
@@ -37,8 +81,9 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
 
         public async Task<int> Find()
         {
-           var apiResponse=await _apiFacade.GetShedule(FromStation.ExpressCode, ToStation.ExpressCode, _selectDate.DateTime, 1);
-            Shedule = apiResponse.Result;
+            var apiResponse=await _apiFacade.GetShedule(FromStation.ExpressCode, ToStation.ExpressCode, _selectDate.DateTime, 1);
+            _allTrainsThreads = apiResponse.Result.TrainTreads;
+            ShowAndHideUnused();
             return 0;
         }
 
@@ -105,13 +150,15 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
         public StationResponse FromStation { get; set; }
         public StationResponse ToStation { get; set; }
 
-        public TrainShedules Shedule
+      
+
+        public ObservableCollection<TrainTread> TrainTreads
         {
-            get { return _shedule; }
+            get { return _trainThreads; }
             set
             {
-                _shedule = value;
-                base.RaisePropertyChanged(()=>Shedule);
+                _trainThreads = value;
+                base.RaisePropertyChanged(()=> TrainTreads);
             }
         }
 
@@ -122,6 +169,16 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
             {
                 _selectDate = value;
                 base.RaisePropertyChanged(() => SelectDate);
+            }
+        }
+
+        public string HideUnusedText
+        {
+            get { return _hideUnusedText; }
+            set
+            {
+                _hideUnusedText = value;
+                base.RaisePropertyChanged(()=> HideUnusedText);
             }
         }
     }

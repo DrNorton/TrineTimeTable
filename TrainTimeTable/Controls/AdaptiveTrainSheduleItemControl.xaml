@@ -1,0 +1,71 @@
+﻿<UserControl
+    x:Class="TrainTimeTable.Controls.AdaptiveTrainSheduleItemControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TrainTimeTable.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:TrainTimeTable.Converters"
+    x:Name="UserControl"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:DateTimeStringFormatConverter x:Key="DateTimeStringFormatConverter"/>
+        <converters:SecundsToMinutesConverter x:Key="SecundsToMinutesConverter"/>
+       
+    </UserControl.Resources>
+
+    <Grid Background="{Binding ElementName=UserControl,Path=Background}" >
+     
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <RelativePanel x:Name="RelativePanel"  Grid.Column="0" >
+            <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="departureTime"  Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Text="{Binding Arrival,Converter={StaticResource DateTimeStringFormatConverter},ConverterParameter='HH:mm'}"/>
+                <FontIcon  x:Name="arrow" RelativePanel.Below="departureTime" RelativePanel.AlignHorizontalCenterWithPanel="True"   Glyph="&#xf175;" FontFamily="ms-appx:///Assets/Fonts/fontawesome-webfont.ttf#FontAwesome"  HorizontalAlignment="Center" FontSize="20"/>
+                <TextBlock x:Name="arrivalTime"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="arrow" FontStyle="Italic" Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="{Binding Departure,Converter={StaticResource DateTimeStringFormatConverter},ConverterParameter='HH:mm'}"/>
+                <TextBlock  x:Name="duration"  RelativePanel.RightOf="arrow" RelativePanel.AlignVerticalCenterWith="arrow" Margin="5,-6,0,0"  FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Duration, Converter={StaticResource SecundsToMinutesConverter}}"/>
+            
+        </RelativePanel>
+            
+            <StackPanel  VerticalAlignment="Center"  Grid.Column="1">
+                <TextBlock x:Name="trainName" Margin="5" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding TrainTitle,Mode=TwoWay}"/>
+                <TextBlock x:Name="stops" Margin="5" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"  Text="{Binding Stops,Mode=TwoWay}"/>
+            </StackPanel>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="narrowView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="trainName.FontSize" Value="20" />
+                       
+                        <Setter Target="stops.FontSize" Value="10" />
+                        <Setter Target="arrow.FontSize" Value="20" />
+                        <Setter Target="arrivalTime.FontSize" Value="15" />
+                        <Setter Target="duration.FontSize" Value="13" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="wideView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="trainName.FontSize" Value="15" />
+                        <Setter Target="stops.FontSize" Value="8" />
+                        <Setter Target="arrow.FontSize" Value="15" />
+                        <Setter Target="arrivalTime.FontSize" Value="12" />
+                        <Setter Target="duration.FontSize" Value="10" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+
+ 
+</UserControl>

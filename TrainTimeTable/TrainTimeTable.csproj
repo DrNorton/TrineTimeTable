@@ -98,11 +98,15 @@
     <Content Include="Assets\Fonts\fontawesome-webfont.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TrainTimeTable.LocalDbEntities.csproj" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\AdaptiveTrainSheduleItemControl.xaml.cs">
+      <DependentUpon>AdaptiveTrainSheduleItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NavMenuListView.cs" />
     <Compile Include="Controls\PageHeader.xaml.cs">
@@ -111,7 +115,14 @@
     <Compile Include="Converters\AlternateConverter.cs" />
     <Compile Include="Converters\DateTimeStringFormatConverter.cs" />
     <Compile Include="Converters\GeoPointModelToGeoPointConverter.cs" />
+    <Compile Include="Converters\NullEmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\SecundsToMinutesConverter.cs" />
+    <Compile Include="Migrations\20150913153023_MyFirstMigration.cs" />
+    <Compile Include="Migrations\20150913153023_MyFirstMigration.designer.cs">
+      <DependentUpon>20150913153023_MyFirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\BloggingContextModelSnapshot.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PositionReceiver.cs" />
     <Compile Include="Setup.cs" />
@@ -162,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\AdaptiveTrainSheduleItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PageHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -199,6 +214,10 @@
     <ProjectReference Include="..\TrainTimeTable.ApiClient\TrainTimeTable.ApiClient.csproj">
       <Project>{3cedb741-4b7f-4cce-a136-35b4b8151746}</Project>
       <Name>TrainTimeTable.ApiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainTimeTable.LocalDbEntities\TrainTimeTable.LocalDbEntities.csproj">
+      <Project>{73db14f0-3b9d-4d1f-be3b-14ede3196755}</Project>
+      <Name>TrainTimeTable.LocalDbEntities</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainTimeTable.Shared\TrainTimeTable.Shared.csproj">
       <Project>{928719e9-dcf6-4a27-ae02-b2343fb5a6c5}</Project>

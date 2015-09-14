@@ -8,12 +8,15 @@
     xmlns:converters="using:TrainTimeTable.Converters"
     x:Name="View"
     xmlns:Shedule="using:TrainTimeTable.Shared.ViewModels.Shedule"
+    xmlns:controls="using:TrainTimeTable.Controls"
     x:Class="TrainTimeTable.Views.Shedule.SheduleWizardView"
-    mc:Ignorable="d" d:DataContext="{d:DesignInstance Shedule:SheduleWizardViewModel}">
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance Shedule:SheduleWizardViewModel}" >
     <views:MvxWindowsPage.Resources>
-        <converters:DateTimeStringFormatConverter x:Key="DateTimeStringFormatConverter"/>
-        <converters:SecundsToMinutesConverter x:Key="SecundsToMinutesConverter"/>
-
+        <converters:NullEmptyCollectionVisibilityConverter x:Name="NullEmptyCollectionVisibilityConverter"/>
+        <converters:AlternateConverter CurrentList="{Binding ElementName=sheduleList, Path=ItemsSource}" 
+                                      AlternateBrushes="{Binding ElementName=View,Path=Brushes}"
+                                      x:Key="AlternateConverter"/>
+        
         <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="TabNavigation" Value="Local"/>
@@ -23,14 +26,24 @@
           
         </Style>
     </views:MvxWindowsPage.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Visibility="{Binding TrainTreads,Converter={StaticResource NullEmptyCollectionVisibilityConverter}}" >
+            <AppBarButton Command="{Binding AddToFavoritesCommand}"  Label="В избранное">
+                <AppBarButton.Icon>
+                    <FontIcon  FontFamily="Segoe UI Symbol" Glyph="&#xE113;"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
 
-    <Grid Margin="0,25,0,0"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid x:Name="LayoutRoot" Margin="0,25,0,0"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -56,40 +69,18 @@
             </AutoSuggestBox.ItemTemplate>
         </AutoSuggestBox>
 
-
         <DatePicker Header="Когда"  YearVisible="False" Date="{Binding SelectDate, Mode=TwoWay}"  VerticalAlignment="Center"   Margin="10"   Grid.Row="2" Grid.Column="0"/>
         <Button  Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,28,0,0"  Command="{Binding FindCommand}" Content="Найти!"/>
-        <ListView ItemContainerStyle="{StaticResource ListViewItemStyle}" x:Name="sheduleList" HorizontalContentAlignment="Stretch" DataContext="{Binding Shedule}" ItemsSource="{Binding TrainTreads, Mode=TwoWay}" Grid.Row="3"  Grid.ColumnSpan="2">
-            <ListView.Resources>
-                <converters:AlternateConverter CurrentList="{Binding ElementName=sheduleList, Path=ItemsSource}" 
-                                      AlternateBrushes="{Binding ElementName=View,Path=Brushes}"
-                                      x:Key="AlternateConverter"/>
-            </ListView.Resources>
-            
+       
+        <Button Visibility="{Binding ElementName=sheduleList,Path=ItemsSource,Converter={StaticResource NullEmptyCollectionVisibilityConverter}}"  Margin="10,5,0,0" Grid.Row="3" Content="{Binding HideUnusedText,Mode=TwoWay}" Command="{Binding HideUnusedCommand}"/>
+        <ListView ItemContainerStyle="{StaticResource ListViewItemStyle}" x:Name="sheduleList" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding TrainTreads, Mode=TwoWay}" Grid.Row="4"  Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid  Background="{Binding Converter={StaticResource AlternateConverter}}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                           
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Margin="5" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Grid.Column="0" Text="{Binding Arrival, ConverterParameter=HH:mm, Converter={StaticResource DateTimeStringFormatConverter}}"/>
-                        <TextBlock Margin="5" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Grid.Column="0" Text="{Binding Departure, ConverterParameter=HH:mm, Converter={StaticResource DateTimeStringFormatConverter}}"/>
-                        <StackPanel Grid.RowSpan="2" Grid.Column="1">
-                            <TextBlock Margin="5" TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="{Binding TrainTitle,Mode=TwoWay}"/>
-                            <TextBlock Margin="5" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"  Text="{Binding Stops,Mode=TwoWay}"/>
-                        </StackPanel>
-                       
-                        <TextBlock Margin="5" Grid.RowSpan="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Text="{Binding Duration, Converter={StaticResource SecundsToMinutesConverter}}"/>
-                    </Grid>
+                    <controls:AdaptiveTrainSheduleItemControl Background="{Binding Converter={StaticResource AlternateConverter}}" DataContext="{Binding}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </Grid>
+
+   
 </views:MvxWindowsPage>
