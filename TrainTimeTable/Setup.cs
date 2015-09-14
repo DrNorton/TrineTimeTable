@@ -30,6 +30,8 @@ namespace TrainTimeTable
             var mainSetup=new MainSetup();
             CreateMenu();
             RegisterServices();
+
+
             return mainSetup;
         }
 

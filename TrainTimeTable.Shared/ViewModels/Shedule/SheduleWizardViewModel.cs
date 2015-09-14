@@ -76,7 +76,7 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
 
         public SheduleWizardViewModel()
         {
-             
+           
         }
 
         public async Task<int> Find()
@@ -85,6 +85,7 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
             _allTrainsThreads = apiResponse.Result.TrainTreads;
             ShowAndHideUnused();
             return 0;
+
         }
 
         private async void LoadStations(int number)

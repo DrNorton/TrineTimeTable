@@ -122,7 +122,6 @@
       <DependentUpon>20150913153023_MyFirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BloggingContextModelSnapshot.cs" />
-    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PositionReceiver.cs" />
     <Compile Include="Setup.cs" />
