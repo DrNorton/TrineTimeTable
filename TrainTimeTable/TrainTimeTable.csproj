@@ -117,11 +117,6 @@
     <Compile Include="Converters\GeoPointModelToGeoPointConverter.cs" />
     <Compile Include="Converters\NullEmptyCollectionVisibilityConverter.cs" />
     <Compile Include="Converters\SecundsToMinutesConverter.cs" />
-    <Compile Include="Migrations\20150913153023_MyFirstMigration.cs" />
-    <Compile Include="Migrations\20150913153023_MyFirstMigration.designer.cs">
-      <DependentUpon>20150913153023_MyFirstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\BloggingContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PositionReceiver.cs" />
     <Compile Include="Setup.cs" />
