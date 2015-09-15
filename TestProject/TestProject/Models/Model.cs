@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 
-namespace TrainTimeTable.LocalDbEntities
+namespace TestProject.Models
 {
     public class LocalDatabaseContext : DbContext
     {
@@ -15,12 +14,11 @@ namespace TrainTimeTable.LocalDbEntities
 
         public LocalDatabaseContext()
         {
-            
+
         }
         public LocalDatabaseContext(string databaseFilePath)
         {
             _databaseFilePath = databaseFilePath;
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,9 +45,8 @@ namespace TrainTimeTable.LocalDbEntities
 
     public class FavoriteTrainPath
     {
+        public int Id { get; set; }
         public long FromStationCode { get; set; }
         public long ToStationCode { get; set; }
     }
-
 }
-

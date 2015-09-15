@@ -65,7 +65,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -85,37 +85,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -520,61 +489,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -1984,7 +1898,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -2004,37 +1918,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -2485,61 +2368,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -3996,7 +3824,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -4016,37 +3844,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -4483,61 +4280,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -5980,7 +5722,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -6000,37 +5742,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -6486,61 +6197,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -7997,7 +7653,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -8017,37 +7673,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -8484,61 +8109,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -9981,7 +9551,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -10001,37 +9571,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -10487,61 +10026,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -11998,7 +11482,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.Sqlite/7.0.0-beta6": {
+      "EntityFramework.SQLite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -12018,37 +11502,6 @@
         },
         "runtime": {
           "lib/portable-windows8+net45+wp8/System.Interactive.Async.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights/1.0.0": {
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        },
-        "runtime": {
-          "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll": {}
-        }
-      },
-      "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "[1.0.0, )",
-          "Microsoft.ApplicationInsights.PersistenceChannel": "[1.0.0, )"
-        },
-        "compile": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
       "Microsoft.CodeAnalysis.Analyzers/1.0.0": {
@@ -12485,61 +11938,6 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.CrossCore/3.5.1": {
-        "dependencies": {
-          "MvvmCross.PortableSupport": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.CrossCore.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.CrossCore.dll": {},
-          "lib/win81/Cirrious.MvvmCross.Localization.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll": {},
-          "lib/win81/Cirrious.MvvmCross.dll": {}
-        }
-      },
-      "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-        "dependencies": {
-          "MvvmCross.HotTuna.CrossCore": "[3.5.1, )"
-        },
-        "compile": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        },
-        "runtime": {
-          "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll": {}
-        }
-      },
-      "MvvmCross.PortableSupport/3.5.1": {
-        "compile": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        },
-        "runtime": {
-          "lib/portable-win+net45+wp8+win8+wpa81/_._": {}
-        }
-      },
-      "Newtonsoft.Json/7.0.1": {
-        "compile": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
-        },
-        "runtime": {
-          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "Remotion.Linq/2.0.0-alpha-004": {
@@ -13979,7 +13377,7 @@
         "_rels/.rels"
       ]
     },
-    "EntityFramework.Sqlite/7.0.0-beta6": {
+    "EntityFramework.SQLite/7.0.0-beta6": {
       "sha512": "fCXpnoaz57Gf0n0QmwqeBqlhbPoH5Bu+isjT0RBQ66hCZliHQ0Szgxon3h1tQfc6ROWq0BDrgSsvh6kBx9ti9g==",
       "type": "Package",
       "files": [
@@ -14006,56 +13404,6 @@
         "lib/net45/System.Interactive.Async.XML",
         "lib/portable-windows8+net45+wp8/System.Interactive.Async.XML",
         "package/services/metadata/core-properties/865cb84178e04f31af5b662c4a75957e.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "Microsoft.ApplicationInsights/1.0.0": {
-      "sha512": "HZ47/thX57SOuIivSvIbsR6L9CCb/Yt3IyB2i4KHmmNlf3DO+lqFwWIKDdbDNWKX+qh0Rg20/JSMPK0dwUsYYw==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "Microsoft.ApplicationInsights.nuspec",
-        "lib/net40/Microsoft.ApplicationInsights.dll",
-        "lib/net40/Microsoft.ApplicationInsights.XML",
-        "lib/net45/Microsoft.ApplicationInsights.dll",
-        "lib/net45/Microsoft.ApplicationInsights.XML",
-        "lib/wp8/Microsoft.ApplicationInsights.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.XML",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.XML",
-        "package/services/metadata/core-properties/b9e7bc7ab2454491af07046165ff01d0.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "Microsoft.ApplicationInsights.PersistenceChannel/1.0.0": {
-      "sha512": "0qQXC+CtbyF2RPuld5pF74fxsnP6ml0LUnzQ6GL9AXXY64LPsLDsPUAymoUffo7LZvPDppZboTYX59TfVxKA7A==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "Microsoft.ApplicationInsights.PersistenceChannel.nuspec",
-        "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "lib/net40/Microsoft.ApplicationInsights.PersistenceChannel.XML",
-        "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.PersistenceChannel.XML",
-        "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "lib/portable-win8+wpa81/Microsoft.ApplicationInsights.PersistenceChannel.XML",
-        "package/services/metadata/core-properties/dc9ebba80e7343fdbd0a39a3cdeb672c.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-      "sha512": "fNCAjIwvbTV+G0dT14bgM5tptsqeSaKQaCrlq7QknOq1Xdm8ZmgsDYddMgXkvykyKLjWyU6fKuOpj6fsQJy+wQ==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "Microsoft.ApplicationInsights.WindowsApps.nuspec",
-        "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
-        "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
-        "lib/wp8/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
-        "lib/wp8/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
-        "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
-        "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
-        "package/services/metadata/core-properties/4f6f732debe548beaa1183418e8d65cc.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14938,133 +14286,6 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "package/services/metadata/core-properties/1d4eb9d0228b48b88d2df3822fba2d86.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmCross.HotTuna.CrossCore/3.5.1": {
-      "sha512": "8Z/KIROuf0WKV29xF4pdgkabHxPpBOToAh+3qRB+KqqSEkCZk12musOixnWz+Lno/2xAGI7Y65Lb7jxp0qpYyg==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmCross.HotTuna.CrossCore.nuspec",
-        "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.CrossCore.dll",
-        "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Localization.dll",
-        "lib/net45/Cirrious.CrossCore.Wpf.dll",
-        "lib/net45/Cirrious.CrossCore.dll",
-        "lib/net45/Cirrious.MvvmCross.Localization.dll",
-        "lib/netcore45/Cirrious.CrossCore.WindowsStore.dll",
-        "lib/netcore45/Cirrious.CrossCore.dll",
-        "lib/netcore45/Cirrious.MvvmCross.Localization.dll",
-        "lib/wp8/Cirrious.CrossCore.WindowsPhone.dll",
-        "lib/wp8/Cirrious.CrossCore.dll",
-        "lib/wp8/Cirrious.MvvmCross.Localization.dll",
-        "lib/win81/Cirrious.CrossCore.WindowsCommon.dll",
-        "lib/wpa81/Cirrious.CrossCore.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/Cirrious.CrossCore.WindowsCommon.dll",
-        "lib/win81/Cirrious.CrossCore.dll",
-        "lib/win81/Cirrious.MvvmCross.Localization.dll",
-        "lib/wpa81/Cirrious.CrossCore.dll",
-        "lib/wpa81/Cirrious.MvvmCross.Localization.dll",
-        "lib/portable-win81+wpa81/Cirrious.CrossCore.dll",
-        "lib/portable-win81+wpa81/Cirrious.MvvmCross.Localization.dll",
-        "lib/MonoAndroid/Cirrious.CrossCore.Droid.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Binding.Droid.dll",
-        "lib/MonoAndroid/Cirrious.CrossCore.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Binding.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Localization.dll",
-        "lib/Xamarin.iOS10/Cirrious.CrossCore.Touch.dll",
-        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Binding.Touch.dll",
-        "lib/Xamarin.iOS10/Cirrious.CrossCore.dll",
-        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Binding.dll",
-        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Localization.dll",
-        "package/services/metadata/core-properties/4d139372fe884079b35dc2daef050b4b.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmCross.HotTuna.MvvmCrossLibraries/3.5.1": {
-      "sha512": "2g5tLIKt5rvMUzVUYKFYZSfbrtqAaRHH+PAqQ955eeJi1nDyayXmjfZbfY+CAj/zv2DpTQ0VjHaiDdFPP3U8yA==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmCross.HotTuna.MvvmCrossLibraries.nuspec",
-        "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.dll",
-        "lib/net45/Cirrious.MvvmCross.Wpf.dll",
-        "lib/net45/Cirrious.MvvmCross.dll",
-        "lib/netcore45/Cirrious.MvvmCross.WindowsStore.dll",
-        "lib/netcore45/Cirrious.MvvmCross.dll",
-        "lib/wp8/Cirrious.MvvmCross.WindowsPhone.dll",
-        "lib/wp8/Cirrious.MvvmCross.dll",
-        "lib/win81/Cirrious.MvvmCross.WindowsCommon.dll",
-        "lib/wpa81/Cirrious.MvvmCross.WindowsCommon.dll",
-        "lib/portable-win81+wpa81/Cirrious.MvvmCross.WindowsCommon.dll",
-        "lib/win81/Cirrious.MvvmCross.dll",
-        "lib/wpa81/Cirrious.MvvmCross.dll",
-        "lib/portable-win81+wpa81/Cirrious.MvvmCross.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Droid.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.dll",
-        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Touch.dll",
-        "lib/Xamarin.iOS10/Cirrious.MvvmCross.dll",
-        "package/services/metadata/core-properties/5c0a56d761ec4743aa8edf73cbaed863.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmCross.HotTuna.Plugin.Messenger/3.5.1": {
-      "sha512": "kmHqmI2LRKOV8BNKvd0Q15F9a9+xq3uPIVJC+xuOpqHDYOf4tqgkvpco246XguPnZCsSrL/nlWartxnc8+jfTQ==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmCross.HotTuna.Plugin.Messenger.nuspec",
-        "lib/portable-win+net45+wp8+win8+wpa81/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "lib/net45/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/net45/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/netcore45/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/netcore45/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/wp8/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/wp8/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/win81/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/win81/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/wpa81/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/wpa81/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/portable-win81+wpa81/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "lib/MonoAndroid/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/MonoAndroid/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "lib/Xamarin.iOS10/Cirrious.MvvmCross.Plugins.Messenger.dll",
-        "content/Xamarin.iOS10/Bootstrap/MessengerPluginBootstrap.cs.pp",
-        "package/services/metadata/core-properties/8d3262005161445d929d9e629c2fab3e.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "MvvmCross.PortableSupport/3.5.1": {
-      "sha512": "xKG3JF7jJnDVo+OhOFP2D+IY8j4LskJFWqucaTqLpRk9pxgK62xb8V419xuL7d21ySeMl/bc+S+TeGHk2TXyiA==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "MvvmCross.PortableSupport.nuspec",
-        "lib/portable-win+net45+wp8+win8+wpa81/_._",
-        "package/services/metadata/core-properties/36b4a69a5d1841c0bc1ca3bfa25da652.psmdcp",
-        "[Content_Types].xml"
-      ]
-    },
-    "Newtonsoft.Json/7.0.1": {
-      "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
-      "type": "Package",
-      "files": [
-        "_rels/.rels",
-        "Newtonsoft.Json.nuspec",
-        "lib/net20/Newtonsoft.Json.dll",
-        "lib/net20/Newtonsoft.Json.xml",
-        "lib/net35/Newtonsoft.Json.dll",
-        "lib/net35/Newtonsoft.Json.xml",
-        "lib/net40/Newtonsoft.Json.dll",
-        "lib/net40/Newtonsoft.Json.xml",
-        "lib/net45/Newtonsoft.Json.dll",
-        "lib/net45/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
-        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
-        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
-        "tools/install.ps1",
-        "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -17785,15 +17006,9 @@
   "projectFileDependencyGroups": {
     "": [
       "EntityFramework.Commands >= 7.0.0-beta6",
-      "EntityFramework.Sqlite >= 7.0.0-beta6",
-      "Microsoft.ApplicationInsights >= 1.0.0",
-      "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
-      "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
+      "EntityFramework.SQLite >= 7.0.0-beta6",
       "Microsoft.CodeAnalysis.CSharp >= 1.0.0",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "MvvmCross.HotTuna.MvvmCrossLibraries >= 3.5.1",
-      "MvvmCross.HotTuna.Plugin.Messenger >= 3.5.1",
-      "Newtonsoft.Json >= 7.0.1"
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []
   }

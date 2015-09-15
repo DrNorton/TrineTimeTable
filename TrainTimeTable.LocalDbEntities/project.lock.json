@@ -65,7 +65,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -1898,7 +1898,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -3824,7 +3824,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -5722,7 +5722,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -7653,7 +7653,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -9551,7 +9551,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -11482,7 +11482,7 @@
           "lib/dotnet/EntityFramework.Relational.dll": {}
         }
       },
-      "EntityFramework.SQLite/7.0.0-beta6": {
+      "EntityFramework.Sqlite/7.0.0-beta6": {
         "dependencies": {
           "EntityFramework.Relational": "[7.0.0-beta6, )",
           "Microsoft.Data.Sqlite": "[1.0.0-beta6, )",
@@ -13377,7 +13377,7 @@
         "_rels/.rels"
       ]
     },
-    "EntityFramework.SQLite/7.0.0-beta6": {
+    "EntityFramework.Sqlite/7.0.0-beta6": {
       "sha512": "fCXpnoaz57Gf0n0QmwqeBqlhbPoH5Bu+isjT0RBQ66hCZliHQ0Szgxon3h1tQfc6ROWq0BDrgSsvh6kBx9ti9g==",
       "type": "Package",
       "files": [
@@ -17006,7 +17006,7 @@
   "projectFileDependencyGroups": {
     "": [
       "EntityFramework.Commands >= 7.0.0-beta6",
-      "EntityFramework.SQLite >= 7.0.0-beta6",
+      "EntityFramework.Sqlite >= 7.0.0-beta6",
       "Microsoft.CodeAnalysis.CSharp >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],

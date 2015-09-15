@@ -12,26 +12,19 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Cirrious.MvvmCross.WindowsCommon.Views;
-using Microsoft.Data.Entity;
-using TrainTimeTable.LocalDbEntities;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace TrainTimeTable.Views
+namespace TestProject
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainView : MvxWindowsPage
+    public sealed partial class MainPage : Page
     {
-        public MainView()
+        public MainPage()
         {
             this.InitializeComponent();
-            using (var db = new LocalDatabaseContext())
-            {
-                db.Database.ApplyMigrations();
-            }
         }
     }
 }

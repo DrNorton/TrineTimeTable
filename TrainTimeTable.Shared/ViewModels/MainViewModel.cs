@@ -12,7 +12,8 @@ namespace TrainTimeTable.Shared.ViewModels
     {
         public MainViewModel()
         {
-            
+          
+           
         }
     }
 }

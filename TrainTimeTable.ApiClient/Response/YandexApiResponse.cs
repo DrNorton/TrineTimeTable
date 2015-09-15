@@ -31,8 +31,5 @@ namespace TrainTimeTable.ApiClient.Response
         public DateTime Departure { get; set; }
         public string Stops { get; set; }
         public string TrainTitle { get; set; }
-
-        
-
     }
 }
