@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using Microsoft.Data.Entity;
 
-namespace TestProject.Models
+namespace TrainTimeTable.LocalEntities
 {
+    public class DatabaseInitializator
+    {
+        public string Path { get; set; }
+    }
+
     public class LocalDatabaseContext : DbContext
     {
         private readonly string _databaseFilePath;
         public DbSet<FavoriteTrainPath> FavoriteTrainPaths { get; set; }
         public DbSet<Station> Stations { get; set; }
 
-        public LocalDatabaseContext()
+    
+        public LocalDatabaseContext(DatabaseInitializator init)
         {
-
-        }
-        public LocalDatabaseContext(string databaseFilePath)
-        {
-            _databaseFilePath = databaseFilePath;
+            _databaseFilePath = init.Path;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -60,3 +59,4 @@ namespace TestProject.Models
         public string ImageSourceUri { get; set; }
     }
 }
+

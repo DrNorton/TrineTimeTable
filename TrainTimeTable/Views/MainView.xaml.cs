@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.MvvmCross.WindowsCommon.Views;
 using Microsoft.Data.Entity;
-using TrainTimeTable.LocalDbEntities;
+
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,10 +28,7 @@ namespace TrainTimeTable.Views
         public MainView()
         {
             this.InitializeComponent();
-            using (var db = new LocalDatabaseContext())
-            {
-                db.Database.ApplyMigrations();
-            }
+            
         }
     }
 }

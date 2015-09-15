@@ -5,19 +5,17 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{928719E9-DCF6-4A27-AE02-B2343FB5A6C5}</ProjectGuid>
+    <ProjectGuid>{338B925E-C557-43CC-B14F-BBAD68488C44}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrainTimeTable.Shared</RootNamespace>
-    <AssemblyName>TrainTimeTable.Shared</AssemblyName>
+    <RootNamespace>TrainTimeTable.LocalEntities</RootNamespace>
+    <AssemblyName>TrainTimeTable.LocalEntities</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,40 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="app.config" />
     <None Include="project.json" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomAppStart.cs" />
-    <Compile Include="MainSetup.cs" />
-    <Compile Include="Messages\AllStationWithLocationMessage.cs" />
-    <Compile Include="Messages\SetMyPositionMessage.cs" />
-    <Compile Include="Models\Map\GeoModel.cs" />
-    <Compile Include="Models\Map\StationModel.cs" />
-    <Compile Include="Models\NavMenuItem.cs" />
+    <Compile Include="Migrations\20150914205632_Migration.cs" />
+    <Compile Include="Migrations\20150914205632_Migration.Designer.cs">
+      <DependentUpon>20150914205632_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LocalDatabaseContextModelSnapshot.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IPositionReceiver.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="ViewModels\Base\LoadingScreen.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\Map\MapPanelItem.cs" />
-    <Compile Include="ViewModels\Map\MapViewModel.cs" />
-    <Compile Include="ViewModels\Shedule\SheduleWizardViewModel.cs" />
-    <Compile Include="ViewModels\ShellViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TrainTimeTable.ApiClient\TrainTimeTable.ApiClient.csproj">
-      <Project>{3cedb741-4b7f-4cce-a136-35b4b8151746}</Project>
-      <Name>TrainTimeTable.ApiClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrainTimeTable.LocalEntities\TrainTimeTable.LocalEntities.csproj">
-      <Project>{338b925e-c557-43cc-b14f-bbad68488c44}</Project>
-      <Name>TrainTimeTable.LocalEntities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Favorites\" />
+    <Compile Include="Repositories\FavoriteTrainRepository.cs" />
+    <Compile Include="Repositories\IStationRepository.cs" />
+    <Compile Include="Repositories\StationRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

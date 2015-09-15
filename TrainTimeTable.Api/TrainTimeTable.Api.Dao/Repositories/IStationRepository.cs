@@ -8,5 +8,6 @@ namespace TrainTimeTable.Api.Dao.Repositories
     {
         Task<IEnumerable<StationDto>> SearchStationByName(string pattern);
         Task<IEnumerable<StationDto>> GetAllStations();
+        Task<IEnumerable<StationDto>> GetAllStationsWithoutCoordinates();
     }
 }

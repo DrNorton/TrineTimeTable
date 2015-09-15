@@ -7,9 +7,19 @@ using TestProject.Models;
 namespace TestProjectMigrations
 {
     [ContextType(typeof(LocalDatabaseContext))]
-    partial class LocalDatabaseContextModelSnapshot : ModelSnapshot
+    partial class LocalDatabaseMigration
     {
-        public override void BuildModel(ModelBuilder builder)
+        public override string Id
+        {
+            get { return "20150915214200_LocalDatabaseMigration"; }
+        }
+
+        public override string ProductVersion
+        {
+            get { return "7.0.0-beta6-13815"; }
+        }
+
+        public override void BuildTargetModel(ModelBuilder builder)
         {
             builder
                 .Annotation("ProductVersion", "7.0.0-beta6-13815");

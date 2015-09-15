@@ -27,5 +27,10 @@ namespace TrainTimeTable.Api.EfDao.Repositories
         {
             return _context.Stations.Where(x=>x.Position.Latitude!=null && x.Position.Longitude!=null).Select(x => new StationDto() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, StationName = x.StationName,Position = new PositionDto() {Latitude = x.Position.Latitude,Longitude = x.Position.Longitude} }).ToList();
         }
+
+        public async Task<IEnumerable<StationDto>> GetAllStationsWithoutCoordinates()
+        {
+            return _context.Stations.Where(x => x.Position.Latitude != null && x.Position.Longitude != null).Select(x => new StationDto() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, StationName = x.StationName }).ToList();
+        }
     }
 }

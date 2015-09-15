@@ -209,9 +209,9 @@
       <Project>{3cedb741-4b7f-4cce-a136-35b4b8151746}</Project>
       <Name>TrainTimeTable.ApiClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TrainTimeTable.LocalDbEntities\TrainTimeTable.LocalDbEntities.csproj">
-      <Project>{73db14f0-3b9d-4d1f-be3b-14ede3196755}</Project>
-      <Name>TrainTimeTable.LocalDbEntities</Name>
+    <ProjectReference Include="..\TrainTimeTable.LocalEntities\TrainTimeTable.LocalEntities.csproj">
+      <Project>{338b925e-c557-43cc-b14f-bbad68488c44}</Project>
+      <Name>TrainTimeTable.LocalEntities</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainTimeTable.Shared\TrainTimeTable.Shared.csproj">
       <Project>{928719e9-dcf6-4a27-ae02-b2343fb5a6c5}</Project>

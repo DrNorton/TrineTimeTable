@@ -28,6 +28,13 @@ namespace TrainTimeTable.Api.Controllers.Controllers
             return SuccessApiResult(await _stationRepository.SearchStationByName(pattern.Pattern));
         }
 
+        [System.Web.Http.Route("GetAllStations")]
+        [System.Web.Http.HttpPost]
+        public async Task<IHttpActionResult> GetAllStations()
+        {
+            return SuccessApiResult(await _stationRepository.GetAllStationsWithoutCoordinates());
+        }
+
         [System.Web.Http.Route("GetShedule")]
         [System.Web.Http.HttpPost]
         public async Task<IHttpActionResult> GetShedule(StationSearch stationSearch)

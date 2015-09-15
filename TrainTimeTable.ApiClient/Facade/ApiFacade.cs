@@ -31,6 +31,13 @@ namespace TrainTimeTable.ApiClient.Facade
             return ExecuteWithErrorHandling<List<StationResponse>>(searchStationByName);
         }
 
+        public Task<ApiResponse<List<StationResponse>>> GetAllStations()
+        {
+            var getAllStationsRequest = new GetAllStationsRequest();
+            getAllStationsRequest.BaseUrl = _apiSettings.BaseUrl;
+            return ExecuteWithErrorHandling<List<StationResponse>>(getAllStationsRequest);
+        }
+
         public Task<ApiResponse<TrainShedules>> GetShedule(long from,long to,DateTime date,int page)
         {
             var getSheduleRequest = new GetSheduleRequest(from,to,date,page);

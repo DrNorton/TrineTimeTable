@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Microsoft.Data.Entity;
 
 namespace TrainTimeTable.LocalDbEntities
@@ -12,15 +13,15 @@ namespace TrainTimeTable.LocalDbEntities
     {
         private readonly string _databaseFilePath;
         public DbSet<FavoriteTrainPath> FavoriteTrainPaths { get; set; }
+        public DbSet<Station> Stations { get; set; }
 
         public LocalDatabaseContext()
         {
-            
+            _databaseFilePath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "local.db");
         }
         public LocalDatabaseContext(string databaseFilePath)
         {
             _databaseFilePath = databaseFilePath;
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,9 +48,18 @@ namespace TrainTimeTable.LocalDbEntities
 
     public class FavoriteTrainPath
     {
-        public long FromStationCode { get; set; }
-        public long ToStationCode { get; set; }
+        public int Id { get; set; }
+        public Station From { get; set; }
+        public Station To { get; set; }
     }
 
+    public class Station
+    {
+        public int Id { get; set; }
+        public long Ecr { get; set; }
+        public long ExpressCode { get; set; }
+        public string StationName { get; set; }
+        public string ImageSourceUri { get; set; }
+    }
 }
 

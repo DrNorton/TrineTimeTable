@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+
 using TrainTimeTable.Views;
 
 namespace TrainTimeTable
@@ -37,6 +38,8 @@ namespace TrainTimeTable
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            
         }
 
         /// <summary>

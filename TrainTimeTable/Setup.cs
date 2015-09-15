@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
+using Microsoft.Data.Entity;
+using TrainTimeTable.LocalEntities;
+using TrainTimeTable.LocalEntities.Repositories;
 using TrainTimeTable.Services;
 using TrainTimeTable.Shared;
 using TrainTimeTable.Shared.Models;
@@ -30,14 +35,32 @@ namespace TrainTimeTable
             var mainSetup=new MainSetup();
             CreateMenu();
             RegisterServices();
-
-
+            CreateLocalDatabase();
+            RegisterDatabaseServices();
             return mainSetup;
+        }
+
+        private void RegisterDatabaseServices()
+        {
+            Mvx.RegisterType<LocalDatabaseContext, LocalDatabaseContext>();
+            Mvx.RegisterType<IStationRepository, StationRepository>();
+           
+        }
+
+        private void CreateLocalDatabase()
+        {
+            var initBase = new DatabaseInitializator() { Path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "local.db") };
+            Mvx.RegisterSingleton<DatabaseInitializator>(initBase);
+            using (var db = new LocalDatabaseContext(initBase))
+            {
+                db.Database.ApplyMigrations();
+            }
         }
 
         private void RegisterServices()
         {
             Mvx.RegisterType<IPositionReceiver, PositionReceiver>();
+            
         }
 
         protected override IMvxTrace CreateDebugTrace()

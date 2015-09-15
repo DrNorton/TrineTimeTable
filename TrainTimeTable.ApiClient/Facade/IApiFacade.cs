@@ -13,5 +13,6 @@ namespace TrainTimeTable.ApiClient.Facade
         Task<ApiResponse<Token>> Auth(string email,string password);
         Task<ApiResponse<TrainShedules>> GetShedule(long from,long to,DateTime date,int page);
         Task<ApiResponse<List<StationResponse>>> GetAllStationsCoordinates();
+        Task<ApiResponse<List<StationResponse>>> GetAllStations();
     }
 }

@@ -10,10 +10,11 @@ namespace TrainTimeTable.Shared.ViewModels
 {
     public class MainViewModel:LoadingScreen
     {
-        public MainViewModel()
+        public MainViewModel( )
         {
-          
            
         }
+
+        
     }
 }
