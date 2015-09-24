@@ -5,6 +5,8 @@ namespace TrainTimeTable.LocalEntities.Repositories
 {
     public interface IStationRepository
     {
-        Task<List<Station>> GetAllStations();
+        Task AddStationsIfNotExists(IEnumerable<Station> stations);
+        Task AddStation(Station station);
+        Task<Station> FindByScr(long ecr);
     }
 }

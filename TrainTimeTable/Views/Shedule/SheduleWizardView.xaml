@@ -30,7 +30,7 @@
         <CommandBar Visibility="{Binding TrainTreads,Converter={StaticResource NullEmptyCollectionVisibilityConverter}}" >
             <AppBarButton Command="{Binding AddToFavoritesCommand}"  Label="В избранное">
                 <AppBarButton.Icon>
-                    <FontIcon  FontFamily="Segoe UI Symbol" Glyph="&#xE113;"/>
+                    <FontIcon  FontFamily="Segoe UI Symbol" Glyph="{Binding FavoriteIcon,Mode=TwoWay}"/>
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>

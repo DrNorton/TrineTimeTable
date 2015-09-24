@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.ViewModels;
+using SQLite.Net.Interop;
 using TrainTimeTable.ApiClient;
 using TrainTimeTable.ApiClient.Executer;
 using TrainTimeTable.ApiClient.Facade;
@@ -22,8 +23,6 @@ namespace TrainTimeTable.Shared
             RegisterViewModels();
             RegisterApi();
             RegisterAppStart(new CustomAppStart());
-            
-        
             Cirrious.MvvmCross.Plugins.Messenger.PluginLoader.Instance.EnsureLoaded();
         }
 

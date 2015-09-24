@@ -10,7 +10,8 @@
     "MvvmCross.HotTuna.CrossCore": "3.5.1",
     "MvvmCross.HotTuna.MvvmCrossLibraries": "3.5.1",
     "MvvmCross.HotTuna.Plugin.Messenger": "3.5.1",
-    "Newtonsoft.Json": "7.0.1"
+    "Newtonsoft.Json": "7.0.1",
+    "SQLiteNetExtensions.Async": "1.3.0"
   },
   "frameworks": {
     "dotnet": {

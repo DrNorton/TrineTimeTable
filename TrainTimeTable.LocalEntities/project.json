@@ -4,9 +4,9 @@
     "uwp.10.0.app": {}
   },
   "dependencies": {
-    "EntityFramework.Sqlite": "7.0.0-beta6",
     "Microsoft.NETCore": "5.0.0",
-    "Microsoft.NETCore.Portable.Compatibility": "1.0.0"
+    "Microsoft.NETCore.Portable.Compatibility": "1.0.0",
+    "SQLiteNetExtensions.Async": "1.3.0"
   },
   "frameworks": {
     "dotnet": {

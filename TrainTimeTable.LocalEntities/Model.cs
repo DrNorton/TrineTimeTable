@@ -1,62 +1,49 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
-using Microsoft.Data.Entity;
+using System.Threading.Tasks;
+using SQLite.Net;
+using SQLite.Net.Async;
+using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
+using SQLiteNetExtensionsAsync.Extensions;
 
 namespace TrainTimeTable.LocalEntities
 {
     public class DatabaseInitializator
     {
         public string Path { get; set; }
+
+
     }
 
-    public class LocalDatabaseContext : DbContext
-    {
-        private readonly string _databaseFilePath;
-        public DbSet<FavoriteTrainPath> FavoriteTrainPaths { get; set; }
-        public DbSet<Station> Stations { get; set; }
-
-    
-        public LocalDatabaseContext(DatabaseInitializator init)
-        {
-            _databaseFilePath = init.Path;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string databaseFilePath = "local.db";
-            try
-            {
-                databaseFilePath = _databaseFilePath;
-            }
-            catch (InvalidOperationException)
-            { }
-
-            optionsBuilder.UseSqlite($"Data source={databaseFilePath}");
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // Make Blog.Url required
-            //modelBuilder.Entity<Blog>()
-            //    .Property(b => b.Url)
-            //    .Required();
-        }
-    }
+   
 
     public class FavoriteTrainPath
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public Station From { get; set; }
-        public Station To { get; set; }
+        [ForeignKey(typeof(Station))]
+        public int FromId { get; set; }
+        [ManyToOne("FromId")]
+        public  Station From { get; set; }
+        [ForeignKey(typeof(Station))]
+        public int ToId { get; set; }
+        [ManyToOne("ToId")]
+        public  Station To { get; set; }
+       
     }
 
     public class Station
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public long Ecr { get; set; }
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
         public string ImageSourceUri { get; set; }
+
     }
 }
 

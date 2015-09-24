@@ -11,7 +11,8 @@ using Cirrious.CrossCore;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.MvvmCross.WindowsCommon.Platform;
-using Microsoft.Data.Entity;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.WinRT;
 using TrainTimeTable.LocalEntities;
 using TrainTimeTable.LocalEntities.Repositories;
 using TrainTimeTable.Services;
@@ -35,27 +36,22 @@ namespace TrainTimeTable
             var mainSetup=new MainSetup();
             CreateMenu();
             RegisterServices();
-            CreateLocalDatabase();
+      
             RegisterDatabaseServices();
             return mainSetup;
         }
 
         private void RegisterDatabaseServices()
         {
-            Mvx.RegisterType<LocalDatabaseContext, LocalDatabaseContext>();
-            Mvx.RegisterType<IStationRepository, StationRepository>();
-           
-        }
-
-        private void CreateLocalDatabase()
-        {
             var initBase = new DatabaseInitializator() { Path = Path.Combine(ApplicationData.Current.LocalFolder.Path, "local.db") };
             Mvx.RegisterSingleton<DatabaseInitializator>(initBase);
-            using (var db = new LocalDatabaseContext(initBase))
-            {
-                db.Database.ApplyMigrations();
-            }
+            Mvx.RegisterSingleton<ISQLitePlatform>(new SQLitePlatformWinRT());
+            Mvx.ConstructAndRegisterSingleton<SqliteContext,SqliteContext>();
+            Mvx.RegisterType<IStationRepository, StationRepository>();
+            Mvx.RegisterType<IFavoriteTrainRepository, FavoriteTrainRepository>();
         }
+
+    
 
         private void RegisterServices()
         {

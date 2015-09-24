@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +39,7 @@ namespace TestProject.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+           
             // Make Blog.Url required
             //modelBuilder.Entity<Blog>()
             //    .Property(b => b.Url)
@@ -47,8 +50,13 @@ namespace TestProject.Models
     public class FavoriteTrainPath
     {
         public int Id { get; set; }
-        public Station From { get; set; }
-        public Station To { get; set; }
+       public int FromId { get; set; }
+        [ForeignKey("FromId")]
+        public  Station From { get; set; }
+       public int ToId { get; set; }
+        [ForeignKey("ToId")]
+        public  Station To { get; set; }
+
     }
 
     public class Station
@@ -56,7 +64,10 @@ namespace TestProject.Models
         public int Id { get; set; }
         public long Ecr { get; set; }
         public long ExpressCode { get; set; }
+        [Required]
+        [StringLength(100)]
         public string StationName { get; set; }
         public string ImageSourceUri { get; set; }
+        public List<FavoriteTrainPath> Favorites { get; set; }
     }
 }
