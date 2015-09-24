@@ -120,22 +120,64 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
 
         private async void LoadStations(int number)
         {
-            List<StationResponse> loadedStations;
+        
+          
+            string pattern;
             if (number == 0)
             {
-                loadedStations = (await _apiFacade.SearchStationByName(ToPattern)).Result;
-                ToSuggestionStations = loadedStations;
-
+                pattern = ToPattern;
             }
             else
             {
-                loadedStations = (await _apiFacade.SearchStationByName(FromPattern)).Result;
-                FromSuggestionStations = loadedStations;
+                pattern = FromPattern;
             }
-            if(loadedStations!=null && loadedStations.Any())
-            await _stationRepository.AddStationsIfNotExists(loadedStations.Select(x => new Station() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, ImageSourceUri = x.ImageSourceUri==null?null:x.ImageSourceUri.ToString(), StationName = x.StationName}).ToList());
+
+            var stationsFromLocal = await _stationRepository.FindByName(pattern);
+            if (stationsFromLocal.Any())
+            {
+                var suggestionList =
+                    stationsFromLocal.Select(
+                        x =>
+                            new StationResponse()
+                            {
+                                Ecr = x.Ecr,
+                                ExpressCode = x.ExpressCode,
+                                StationName = x.StationName
+                            }).ToList();
+
+                if (number == 0)
+                {
+                    ToSuggestionStations = suggestionList;
+                }
+                else
+                {
+                    FromSuggestionStations = suggestionList;
+                }
+            }
+            else
+            {
+                var loadedStations = (await _apiFacade.SearchStationByName(pattern)).Result;
+
+                if (number == 0)
+                {
+                    ToSuggestionStations = loadedStations;
+                }
+                else
+                {
+                    FromSuggestionStations = loadedStations;
+                }
+               
+                if (loadedStations != null && loadedStations.Any())
+                    await _stationRepository.AddStationsIfNotExists(loadedStations.Select(x => new Station() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, ImageSourceUri = x.ImageSourceUri == null ? null : x.ImageSourceUri.ToString(), StationName = x.StationName }).ToList());
+
+            }
+
+
+           
          
         }
+
+        
 
         public List<StationResponse> ToSuggestionStations
         {
