@@ -62,5 +62,9 @@
     <Build Include="Stations.sql" />
     <Build Include="Positions.sql" />
     <Build Include="StationTypes.sql" />
+    <Build Include="Images.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TrineTimeTable.Database.refactorlog" />
   </ItemGroup>
 </Project>

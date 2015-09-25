@@ -25,6 +25,7 @@ namespace EcrParser
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Image> Images { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<StationType> StationTypes { get; set; }

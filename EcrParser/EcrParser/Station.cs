@@ -22,7 +22,9 @@ namespace EcrParser
         public Nullable<long> OpenStreetMapNode { get; set; }
         public string OpenStreetMapUrl { get; set; }
         public int StationTypeId { get; set; }
+        public Nullable<long> ImageId { get; set; }
     
+        public virtual Image Image { get; set; }
         public virtual Position Position { get; set; }
         public virtual StationType StationType { get; set; }
     }

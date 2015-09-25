@@ -72,6 +72,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>EntityContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Position.cs">
       <DependentUpon>EntityContext.tt</DependentUpon>
     </Compile>
@@ -83,6 +86,7 @@
     <Compile Include="StationType.cs">
       <DependentUpon>EntityContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="WikiStationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
