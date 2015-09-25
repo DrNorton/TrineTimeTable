@@ -43,7 +43,17 @@ namespace TrainTimeTable.LocalEntities
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
         public string ImageSourceUri { get; set; }
+        public int PositionId { get; set; }
+        [ManyToOne("PositionId")]
+        public Position Position { get; set; }
 
+    }
+
+    public class Position
+    {
+        public int Id { get; set; }
+        public Nullable<double> Latitude { get; set; }
+        public Nullable<double> Longitude { get; set; }
     }
 }
 

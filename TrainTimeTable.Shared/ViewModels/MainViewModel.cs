@@ -12,18 +12,28 @@ namespace TrainTimeTable.Shared.ViewModels
 {
     public class MainViewModel:LoadingScreen
     {
-        private readonly IApiFacade _api;
-        private readonly IStationRepository _stationRepository;
-        private readonly SqliteContext _context;
+        private readonly IFavoriteTrainRepository _favoriteTrainRepository;
+        private List<FavoriteTrainPath> _favorites;
 
-        public MainViewModel(IApiFacade api,IStationRepository stationRepository,SqliteContext context)
+        public MainViewModel(IFavoriteTrainRepository favoriteTrainRepository)
         {
-            _api = api;
-            _stationRepository = stationRepository;
-            _context = context;
-           
+            _favoriteTrainRepository = favoriteTrainRepository;
         }
 
-       
+        public List<FavoriteTrainPath> Favorites
+        {
+            get { return _favorites; }
+            set
+            {
+                _favorites = value;
+                base.RaisePropertyChanged(()=>Favorites);
+            }
+        }
+
+        public override async void Start()
+        {
+            _favorites= await _favoriteTrainRepository.GetAllFavorites();
+            base.Start();
+        }
     }
 }

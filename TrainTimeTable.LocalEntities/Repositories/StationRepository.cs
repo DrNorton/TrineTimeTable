@@ -31,6 +31,8 @@ namespace TrainTimeTable.LocalEntities.Repositories
         public Task AddStation(Station station)
         {
             var connection = _context.CreateConnection();
+            var findedStation=connection.GetAsync<Station>(station.Id);
+            if (findedStation == null) return Task.CompletedTask;
             return connection.InsertAsync(station);
         }
 

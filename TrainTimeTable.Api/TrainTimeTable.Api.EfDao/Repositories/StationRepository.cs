@@ -19,7 +19,7 @@ namespace TrainTimeTable.Api.EfDao.Repositories
 
         public async Task<IEnumerable<StationDto>> SearchStationByName(string pattern)
         {
-            return _context.Stations.Where(x=>x.StationName.ToLower().Contains(pattern.ToLower())).Select(x => new StationDto() {Ecr = x.Ecr,ExpressCode=x.ExpressCode,StationName = x.StationName});
+            return _context.Stations.Where(x=>x.StationName.ToLower().Contains(pattern.ToLower())).Select(x => new StationDto() {Ecr = x.Ecr,ExpressCode=x.ExpressCode,StationName = x.StationName,Position = new PositionDto() {Latitude = x.Position.Latitude,Longitude = x.Position.Longitude} });
         }
 
 

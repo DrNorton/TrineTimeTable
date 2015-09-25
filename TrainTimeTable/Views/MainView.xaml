@@ -8,43 +8,29 @@
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
     mc:Ignorable="d">
 
-    <RelativePanel x:Name="LayoutRoot" HorizontalAlignment="Stretch"
-               Margin="20">
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="WideState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                        <Setter Target="Panel.(RelativePanel.RightOf)"
-                Value="Cont" />
-                    </VisualState.Setters>
-                </VisualState>
-                
-                <VisualState x:Name="NarrowState">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-
-                    <VisualState.Setters>
-                     <Setter Target="Panel.(RelativePanel.Below)"
-                Value="Cont" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
-       
-        <TextBlock Text="Привет" x:Name="Cont"/>
+    <Hub>
+        <HubSection Header="Любимые">
+            <DataTemplate>
+                <GridView ItemsSource="{Binding Favorites,Mode=TwoWay}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding From.StationName}"/>
+                                <TextBlock Text="{Binding To.StationName}"/>
+                            </StackPanel>
+                           
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </DataTemplate>
         
-        <Border x:Name="Panel"  Background="Black" BorderBrush="White" BorderThickness="2">
-                <TextBlock Text="Привет 22 22 2 "/>
-        </Border>
+       
+        </HubSection>
 
-    </RelativePanel>
+        <HubSection Header="Новости">
+
+        </HubSection>
+    </Hub>
 
 
 
