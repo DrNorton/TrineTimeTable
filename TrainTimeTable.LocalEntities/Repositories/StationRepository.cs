@@ -36,6 +36,12 @@ namespace TrainTimeTable.LocalEntities.Repositories
             return connection.InsertAsync(station);
         }
 
+        public Task<List<Station>> FindByName(string name)
+        {
+            var connection = _context.CreateConnection();
+            return connection.Table<Station>().Where(x => x.StationName.Contains(name)).ToListAsync();
+        }
+
 
         public Task<Station> FindByScr(long ecr)
         {

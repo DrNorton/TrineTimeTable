@@ -8,5 +8,6 @@ namespace TrainTimeTable.LocalEntities.Repositories
         Task AddStationsIfNotExists(IEnumerable<Station> stations);
         Task AddStation(Station station);
         Task<Station> FindByScr(long ecr);
+        Task<List<Station>> FindByName(string name);
     }
 }
