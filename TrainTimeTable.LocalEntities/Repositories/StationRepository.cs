@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SQLiteNetExtensionsAsync.Extensions;
 
 
 namespace TrainTimeTable.LocalEntities.Repositories
@@ -17,15 +18,7 @@ namespace TrainTimeTable.LocalEntities.Repositories
         {
             var connection = _context.CreateConnection();
             var table = connection.Table<Station>();
-          
-            foreach (var station in stations)
-            {
-                var isExists= (await table.Where(x => x.ExpressCode == station.ExpressCode).ToListAsync()).Count>0;
-                if (!isExists)
-                {
-                    await connection.InsertAsync(station);
-                }
-            }
+            await connection.InsertOrReplaceAllWithChildrenAsync(stations);
         }
 
         public Task AddStation(Station station)
@@ -42,6 +35,11 @@ namespace TrainTimeTable.LocalEntities.Repositories
             return connection.Table<Station>().Where(x => x.StationName.Contains(name)).ToListAsync();
         }
 
+
+        public Task<List<Station>> GetAll()
+        {
+            return _context.CreateConnection().GetAllWithChildrenAsync<Station>();
+        }
 
         public Task<Station> FindByScr(long ecr)
         {

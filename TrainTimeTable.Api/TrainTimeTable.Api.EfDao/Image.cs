@@ -12,17 +12,17 @@ namespace TrainTimeTable.Api.EfDao
     using System;
     using System.Collections.Generic;
     
-    public partial class Station
+    public partial class Image
     {
-        public int Id { get; set; }
-        public long Ecr { get; set; }
-        public long ExpressCode { get; set; }
-        public string StationName { get; set; }
-        public Nullable<long> OpenStreetMapNode { get; set; }
-        public string OpenStreetMapUrl { get; set; }
+        public Image()
+        {
+            this.Stations = new HashSet<Station>();
+        }
     
-        public virtual Image Image { get; set; }
-        public virtual Position Position { get; set; }
-        public virtual StationType StationType { get; set; }
+        public long Id { get; set; }
+        public string ThumbUrl { get; set; }
+        public string FullImageUrl { get; set; }
+    
+        public virtual ICollection<Station> Stations { get; set; }
     }
 }

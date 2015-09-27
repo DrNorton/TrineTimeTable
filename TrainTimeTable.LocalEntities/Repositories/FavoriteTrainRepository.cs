@@ -17,7 +17,7 @@ namespace TrainTimeTable.LocalEntities.Repositories
 
         public Task<List<FavoriteTrainPath>> GetAllFavorites()
         {
-            return _context.CreateConnection().GetAllWithChildrenAsync<FavoriteTrainPath>();
+            return _context.CreateConnection().GetAllWithChildrenAsync<FavoriteTrainPath>(recursive:true);
         }
 
         public async Task AddToFavorites(long fromEcr, long toEcr)

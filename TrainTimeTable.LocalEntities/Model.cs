@@ -24,12 +24,16 @@ namespace TrainTimeTable.LocalEntities
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
         [ForeignKey(typeof(Station))]
         public int FromId { get; set; }
+
         [ManyToOne("FromId")]
         public  Station From { get; set; }
+
         [ForeignKey(typeof(Station))]
         public int ToId { get; set; }
+
         [ManyToOne("ToId")]
         public  Station To { get; set; }
        
@@ -43,17 +47,38 @@ namespace TrainTimeTable.LocalEntities
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
         public string ImageSourceUri { get; set; }
+
+        [ForeignKey(typeof(Position))]
         public int PositionId { get; set; }
-        [ManyToOne("PositionId")]
+
+        [ManyToOne("PositionId", CascadeOperations = CascadeOperation.All)]
         public Position Position { get; set; }
+
+        [ForeignKey(typeof(Image))]
+        public int ImageId { get; set; }
+
+        [ManyToOne("ImageId", CascadeOperations = CascadeOperation.All)]
+        public Image Image { get; set; }
 
     }
 
     public class Position
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public Nullable<double> Latitude { get; set; }
-        public Nullable<double> Longitude { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
     }
+
+    public  class Image
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string ThumbUrl { get; set; }
+        public string FullImageUrl { get; set; }
+
+       
+    }
+
 }
 

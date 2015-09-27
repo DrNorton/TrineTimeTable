@@ -132,9 +132,28 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
                 loadedStations = (await _apiFacade.SearchStationByName(FromPattern)).Result;
                 FromSuggestionStations = loadedStations;
             }
-            if(loadedStations!=null && loadedStations.Any())
-            await _stationRepository.AddStationsIfNotExists(loadedStations.Select(x => new Station() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, ImageSourceUri = x.ImageSourceUri==null?null:x.ImageSourceUri.ToString(), StationName = x.StationName,Position = new Position() {Latitude = x.Position.Latitude,Longitude = x.Position.Longitude} }).ToList());
-         
+            if (loadedStations != null && loadedStations.Any())
+                await
+                    _stationRepository.AddStationsIfNotExists(
+                        loadedStations.Select(
+                            x =>
+                                new Station()
+                                {
+                                    Ecr = x.Ecr,
+                                    ExpressCode = x.ExpressCode,
+                                    ImageSourceUri = x.ImageSourceUri == null ? null : x.ImageSourceUri.ToString(),
+                                    StationName = x.StationName,
+                                    Position =
+                                        new Position()
+                                        {
+                                            Latitude = x.Position.Latitude,
+                                            Longitude = x.Position.Longitude
+                                        },
+                                    Image =
+                                        new Image() {FullImageUrl = x.Image.FullImageUrl, ThumbUrl = x.Image.ThumbUrl}
+                                })
+                            .ToList());
+
         }
 
         public List<StationResponse> ToSuggestionStations

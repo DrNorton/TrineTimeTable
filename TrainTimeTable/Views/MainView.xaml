@@ -17,6 +17,7 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding From.StationName}"/>
                                 <TextBlock Text="{Binding To.StationName}"/>
+                                <Image Width="200" Height="200" Source="{Binding To.Image.FullImageUrl}"/>
                             </StackPanel>
                            
                         </DataTemplate>

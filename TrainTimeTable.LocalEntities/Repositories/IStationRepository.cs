@@ -9,5 +9,6 @@ namespace TrainTimeTable.LocalEntities.Repositories
         Task AddStation(Station station);
         Task<Station> FindByScr(long ecr);
         Task<List<Station>> FindByName(string name);
+        Task<List<Station>> GetAll();
     }
 }

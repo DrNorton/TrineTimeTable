@@ -13,6 +13,7 @@ namespace TrainTimeTable.ApiClient.Response
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
 
+        public ImageDto Image { get; set; }
         public PositionDto Position { get; set; }
 
         [JsonIgnore]
