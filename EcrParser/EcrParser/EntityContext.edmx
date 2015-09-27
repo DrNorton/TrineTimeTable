@@ -28,8 +28,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Thumb" Type="varbinary(max)" />
-          <Property Name="FullImage" Type="varbinary(max)" />
+          <Property Name="ThumbUrl" Type="nvarchar" MaxLength="150" />
+          <Property Name="FullImageUrl" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -123,8 +123,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Binary" Name="Thumb" MaxLength="Max" FixedLength="false" />
-          <Property Type="Binary" Name="FullImage" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="ThumbUrl" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FullImageUrl" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Stations" Relationship="traintimetable_dbModel.FK_Stations_ToImage" FromRole="Image" ToRole="Station" />
         </EntityType>
         <EntityType Name="Position">
@@ -206,8 +206,8 @@
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="traintimetable_dbModel.Image">
               <MappingFragment StoreEntitySet="Images">
-                <ScalarProperty Name="FullImage" ColumnName="FullImage" />
-                <ScalarProperty Name="Thumb" ColumnName="Thumb" />
+                <ScalarProperty Name="FullImageUrl" ColumnName="FullImageUrl" />
+                <ScalarProperty Name="ThumbUrl" ColumnName="ThumbUrl" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

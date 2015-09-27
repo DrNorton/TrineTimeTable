@@ -9,6 +9,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace EcrParser
 {
@@ -19,8 +21,8 @@ namespace EcrParser
 
         static  void Main(string[] args)
         {
-            
-            LoadStationsAndEcrFromWiki();
+            //InsertToBlob();
+           LoadStationsAndEcrFromWiki();
             Go();
             Console.ReadLine();
         }
@@ -95,6 +97,7 @@ namespace EcrParser
                     var url2 = href.Attributes.FirstOrDefault(x => x.Name == "href").Value;
                     image.Url = url2;
                     image.ByteImage=new WebClient().DownloadData(image.Url);
+                    
                     test++;
                     Debug.WriteLine(test);
                 }
@@ -114,6 +117,30 @@ namespace EcrParser
             var parsed = await Parse();
             Insert(parsed);
          
+        }
+
+        public static string InsertToBlob(string name,byte[] image)
+        {
+            var storageAccount =
+                CloudStorageAccount.Parse(
+                    "DefaultEndpointsProtocol=https;AccountName=projectimages;AccountKey=7Yej0KKzAJZHyTFSMQnap8HB1yEJNYkJqQLXwfH9HM5Op4kcEM3LZpKRW9+sKf8rWv7JatXc8bhcUq12CaqR8g==");
+            var blobClient = storageAccount.CreateCloudBlobClient();
+         // Retrieve a reference to a container.
+            CloudBlobContainer container = blobClient.GetContainerReference("images");
+            // Create the container if it doesn't already exist.
+            container.CreateIfNotExists();
+            container.SetPermissions(
+                    new BlobContainerPermissions
+                    {
+                        PublicAccess =
+                            BlobContainerPublicAccessType.Blob
+                    }); 
+            CloudBlockBlob blockBlob = container.GetBlockBlobReference(name);
+            using (var fileStream = new MemoryStream(image))
+            {
+                blockBlob.UploadFromStream(fileStream);
+            }
+            return String.Format("http://projectimages.blob.core.windows.net/images/{0}", name);
         }
 
         private static void Insert(List<EcrModel> parsed)
@@ -159,8 +186,9 @@ namespace EcrParser
                         var wikiImages = _wikiImages.FirstOrDefault(x => x.Ecr == ecrModel.Ecr);
                         if (wikiImages != null && wikiImages.ByteImage != null)
                         {
-                            newStation.Image = new Image();
-                            newStation.Image.FullImage = wikiImages.ByteImage;
+                            var urlblob = InsertToBlob(wikiImages.FileName, wikiImages.ByteImage);
+                            newStation.Image=new Image();
+                            newStation.Image.FullImageUrl = urlblob;
                         }
                         else
                         {
@@ -171,8 +199,9 @@ namespace EcrParser
                             var img = new WebClient().DownloadData(url);
                             if (img != null)
                             {
+                                var urlblob = InsertToBlob(ecrModel.StationName+".jpg", img);
                                 newStation.Image = new Image();
-                                newStation.Image.FullImage = img;
+                                newStation.Image.FullImageUrl = urlblob;
                             }
 
                         }
