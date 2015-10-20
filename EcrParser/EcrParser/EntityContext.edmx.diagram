@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d8bc10d236d4419e84482e4469ae8fd6" Name="Diagram1">
-        <EntityTypeShape EntityType="traintimetable_dbModel.Image" Width="1.5" PointX="2.227652377554985" PointY="13.092539063232271" />
-        <EntityTypeShape EntityType="traintimetable_dbModel.Position" Width="1.5" PointX="0.274081550666169" PointY="26.705700275816817" />
-        <EntityTypeShape EntityType="traintimetable_dbModel.Station" Width="1.5" PointX="5.1180416890969695" PointY="19.34294816262226" />
-        <EntityTypeShape EntityType="traintimetable_dbModel.StationType" Width="1.5" PointX="9.3859367563323755" PointY="3.7003693299835403" />
+        <EntityTypeShape EntityType="traintimetable_dbModel.Image" Width="1.5" PointX="7.0030511184609736" PointY="5.5210951890428994" />
+        <EntityTypeShape EntityType="traintimetable_dbModel.Position" Width="1.5" PointX="3.8864165711619036" PointY="8.0989287235303458" />
+        <EntityTypeShape EntityType="traintimetable_dbModel.Station" Width="1.5" PointX="9.3629991027354258" PointY="13.846508062373152" />
+        <EntityTypeShape EntityType="traintimetable_dbModel.StationType" Width="1.5" PointX="10.136458267521327" PointY="4.6605374983793766" />
         <AssociationConnector Association="traintimetable_dbModel.FK_Stations_ToImage" />
         <AssociationConnector Association="traintimetable_dbModel.FK_Stations_ToPositions" />
         <AssociationConnector Association="traintimetable_dbModel.FK_Stations_ToStationTypes" />

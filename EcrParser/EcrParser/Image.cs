@@ -20,8 +20,8 @@ namespace EcrParser
         }
     
         public long Id { get; set; }
-        public byte[] Thumb { get; set; }
-        public byte[] FullImage { get; set; }
+        public string ThumbUrl { get; set; }
+        public string FullImageUrl { get; set; }
     
         public virtual ICollection<Station> Stations { get; set; }
     }
