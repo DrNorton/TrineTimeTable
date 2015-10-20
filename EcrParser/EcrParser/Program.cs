@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -11,6 +14,7 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Encoder = System.Text.Encoder;
 
 namespace EcrParser
 {
@@ -97,7 +101,7 @@ namespace EcrParser
                     var url2 = href.Attributes.FirstOrDefault(x => x.Name == "href").Value;
                     image.Url = url2;
                     image.ByteImage=new WebClient().DownloadData(image.Url);
-                    
+                    image.Thumb = GetSmallImage(image.ByteImage);
                     test++;
                     Debug.WriteLine(test);
                 }
@@ -187,8 +191,10 @@ namespace EcrParser
                         if (wikiImages != null && wikiImages.ByteImage != null)
                         {
                             var urlblob = InsertToBlob(wikiImages.FileName, wikiImages.ByteImage);
+                            var smallBlob = InsertToBlob("thumb_" + wikiImages.FileName, wikiImages.Thumb);
                             newStation.Image=new Image();
                             newStation.Image.FullImageUrl = urlblob;
+                            newStation.Image.ThumbUrl = smallBlob;
                         }
                         else
                         {
@@ -196,12 +202,21 @@ namespace EcrParser
                                 string.Format(
                                     "http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/{0},{1}/17?mapSize=800,800&key=l6AOGVgaf0DIlLuOEOum~ysMXqmfV9te9mCzpSy1QHA~AsNLrgOgd3BHryIGeusH0s4--NnOwoiAT6Pc56ilxJPflOrSOF1CN1h0BaimBW1g&AB&pp={0},{1};;★",
                                     ecrModel.Position.Latitude.ToString().Replace(",", "."), ecrModel.Position.Longitude.ToString().Replace(",", "."));
+
+                            var url2 =
+                              string.Format(
+                                  "http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/{0},{1}/17?mapSize=300,300&key=l6AOGVgaf0DIlLuOEOum~ysMXqmfV9te9mCzpSy1QHA~AsNLrgOgd3BHryIGeusH0s4--NnOwoiAT6Pc56ilxJPflOrSOF1CN1h0BaimBW1g&AB&pp={0},{1};;★",
+                                  ecrModel.Position.Latitude.ToString().Replace(",", "."), ecrModel.Position.Longitude.ToString().Replace(",", "."));
                             var img = new WebClient().DownloadData(url);
+                            var thumb = new WebClient().DownloadData(url2);
                             if (img != null)
                             {
                                 var urlblob = InsertToBlob(ecrModel.StationName+".jpg", img);
+                                var smallBlob = InsertToBlob("thumb_"+ecrModel.StationName + ".jpg", thumb);
+
                                 newStation.Image = new Image();
                                 newStation.Image.FullImageUrl = urlblob;
+                                newStation.Image.ThumbUrl = smallBlob;
                             }
 
                         }
@@ -234,6 +249,60 @@ namespace EcrParser
         
         
         }
+
+        public static byte[] GetSmallImage(byte[] image)
+        {
+          
+                    // Create a new stream and read in the data. Where this.Data = the Data Column
+            using (MemoryStream stream = new MemoryStream(image))
+                    {
+                        // Create the original image using the stream data
+                        using (var img = System.Drawing.Image.FromStream(stream))
+                        {
+                            // Get the image dimensions
+                            double width = img.Width;
+                            double height = img.Height;
+
+                            // Only resize if the image is larger than the thumbnail size
+                            if (height > 150)
+                            {
+                                // Find the aspect ratio so that we don't distort the image during reduction
+                                double aspectRatio = width / height;
+
+                                // Set a fixed height for your thumbnails
+                                height = 300;
+
+                                // Get the width based on the height and aspect ratio to get the correct scale
+                                width = height * aspectRatio;
+                            }
+
+                            // Create a new image based on the original and new size
+                            using (Bitmap bmp = new Bitmap(img, (int)width, (int)height))
+                            {
+                                using (MemoryStream smallImage = new MemoryStream())
+                                {
+                                    // Save the thumbnail image and return as a byte array
+                                    bmp.Save(smallImage, ImageFormat.Png);
+                                    return smallImage.ToArray();
+                                }
+                            }
+                        }
+                    }
+                
+               
+            
+        }
+
+        private static Bitmap ResizeImage(Bitmap image, int width, int height)
+        {
+            Bitmap resizedImage = new Bitmap(width, height);
+            using (Graphics gfx = Graphics.FromImage(resizedImage))
+            {
+                gfx.DrawImage(image, new Rectangle(0, 0, width, height),
+                    new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
+            }
+            return resizedImage;
+        } 
 
         static async Task<List<EcrModel>> Parse()
         {

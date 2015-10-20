@@ -13,5 +13,6 @@ namespace EcrParser
         public string Url { get; set; }
 
         public byte[] ByteImage { get; set; }
+        public byte[] Thumb { get; set; }
     }
 }
