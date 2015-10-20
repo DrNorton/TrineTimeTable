@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
-using System.Threading.Tasks;
-using SQLite.Net;
-using SQLite.Net.Async;
-using SQLite.Net.Attributes;
+﻿using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
-using SQLiteNetExtensionsAsync.Extensions;
 
 namespace TrainTimeTable.LocalEntities
 {

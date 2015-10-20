@@ -1,0 +1,94 @@
+﻿<UserControl
+    x:Class="TrainTimeTable.Controls.FavoriteStationImageControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TrainTimeTable.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="UserControl"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid DataContext="{Binding ElementName=UserControl,Path=FavoriteDirection}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="RelativeGroup">
+                <VisualState x:Name="narrowView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ImageFrom.Width" Value="250" />
+                        <Setter Target="ImageFrom.Width" Value="250" />
+                        <Setter Target="ImageTo.Width" Value="250" />
+                        <Setter Target="ImageTo.Width" Value="250" />
+                        <Setter Target="FromStationText.FontSize" Value="25" />
+                        <Setter Target="ToStationText.FontSize" Value="25" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="wideView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ImageFrom.Width" Value="200" />
+                        <Setter Target="ImageFrom.Width" Value="200" />
+                        <Setter Target="ImageTo.Width" Value="200" />
+                        <Setter Target="ImageTo.Width" Value="200" />
+                        <Setter Target="FromStationText.FontSize" Value="15" />
+                        <Setter Target="ToStationText.FontSize" Value="15" />
+                    </VisualState.Setters>
+                </VisualState>
+                
+            
+                
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="ImageGroup">
+                <!--Анимация-->
+                <VisualState x:Name="ContentImageFrom">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="ImageTo" 
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0" Duration="0:00:2" />
+                        <DoubleAnimation Storyboard.TargetName="ImageFrom" 
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1" Duration="0:00:2" />
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ContentImageTo">
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="ImageTo" 
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="1" Duration="0:00:2" />
+                        <DoubleAnimation Storyboard.TargetName="ImageFrom" 
+                                         Storyboard.TargetProperty="Opacity"
+                                         To="0" Duration="0:00:2" />
+                    </Storyboard>
+                </VisualState>
+
+
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Stretch="Fill" x:Name="ImageFrom" Grid.Row="0" Grid.RowSpan="3"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Source="{Binding From.Image.ThumbUrl}"/>
+        <Image Stretch="Fill" x:Name="ImageTo" Grid.Row="0" Grid.RowSpan="3" Opacity="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Source="{Binding To.Image.ThumbUrl}"/>
+        <Border Padding="5" VerticalAlignment="Stretch" Grid.Row="0" Background="Black" Opacity="0.5">
+           
+        </Border>
+
+        <TextBlock x:Name="FromStationText" Grid.Row="0" FontSize="30" HorizontalAlignment="Center" Foreground="White" Text="{Binding From.StationName}"/>
+
+        <Border Padding="5" VerticalAlignment="Stretch"  Grid.Row="2" Background="Black" Opacity="0.5">
+           
+        </Border>
+
+        <TextBlock x:Name="ToStationText" FontSize="30" Grid.Row="2"  HorizontalAlignment="Center" Foreground="White"  VerticalAlignment="Bottom" Text="{Binding To.StationName}"/>
+    </Grid>
+</UserControl>

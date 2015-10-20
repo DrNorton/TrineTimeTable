@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TrainTimeTable</RootNamespace>
     <AssemblyName>TrainTimeTable</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>ru-RU</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -95,9 +95,48 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
     <Content Include="Assets\Fonts\fontawesome-webfont.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square310x310Logo.scale-100.png" />
+    <Content Include="Assets\Square310x310Logo.scale-125.png" />
+    <Content Include="Assets\Square310x310Logo.scale-150.png" />
+    <Content Include="Assets\Square310x310Logo.scale-200.png" />
+    <Content Include="Assets\Square310x310Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\Square71x71Logo.scale-100.png" />
+    <Content Include="Assets\Square71x71Logo.scale-125.png" />
+    <Content Include="Assets\Square71x71Logo.scale-150.png" />
+    <Content Include="Assets\Square71x71Logo.scale-200.png" />
+    <Content Include="Assets\Square71x71Logo.scale-400.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="TrainTimeTable.LocalDbEntities.csproj" />
     <None Include="project.json" />
   </ItemGroup>
@@ -112,6 +151,13 @@
     <Compile Include="Controls\PageHeader.xaml.cs">
       <DependentUpon>PageHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FavoriteStationImageControl.xaml.cs">
+      <DependentUpon>FavoriteStationImageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RelativeSize.cs" />
+    <Compile Include="Controls\SubTrainPickerControl.xaml.cs">
+      <DependentUpon>SubTrainPickerControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\AlternateConverter.cs" />
     <Compile Include="Converters\DateTimeStringFormatConverter.cs" />
     <Compile Include="Converters\GeoPointModelToGeoPointConverter.cs" />
@@ -120,20 +166,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PositionReceiver.cs" />
     <Compile Include="Setup.cs" />
+    <Compile Include="Views\Auth\AuthView.xaml.cs">
+      <DependentUpon>AuthView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Favorites\AddToFavoritesView.xaml.cs">
       <DependentUpon>AddToFavoritesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Map\MapManager.cs" />
-    <Compile Include="Views\Map\MapView.xaml.cs">
-      <DependentUpon>MapView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Map\PopupItem.cs" />
-    <Compile Include="Views\Map\TileDataSourceWithOpacity.cs" />
     <Compile Include="Views\Shedule\SheduleWizardView.xaml.cs">
       <DependentUpon>SheduleWizardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Shedule\TrainStopsView.xaml.cs">
+      <DependentUpon>TrainStopsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -159,7 +205,6 @@
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +220,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Controls\FavoriteStationImageControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SubTrainPickerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\Auth\AuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Favorites\AddToFavoritesView.xaml">
       <SubType>Designer</SubType>
@@ -188,11 +245,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Map\MapView.xaml">
+    <Page Include="Views\Shedule\SheduleWizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Shedule\SheduleWizardView.xaml">
+    <Page Include="Views\Shedule\TrainStopsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

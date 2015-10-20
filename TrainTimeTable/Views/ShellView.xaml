@@ -14,17 +14,13 @@
 
     <Page.Resources>
         <DataTemplate x:Key="NavMenuItemTemplate" x:DataType="local:NavMenuItem">
-            <Grid>
+            <Grid  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding Background,Mode=TwoWay}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <!-- Showing a ToolTip and the Label is redundant.  We put the ToolTip on the icon.
-                     It appears when the user hovers over the icon, but not the label which provides
-                     value when the SplitView is 'Compact' while reducing the likelihood of showing
-                     redundant information when the label is shown.-->
-                <FontIcon x:Name="Glyph" FontSize="16" Glyph="{Binding SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"/>
-                <TextBlock x:Name="Text" Grid.Column="1" Text="{Binding Label}" />
+                    <FontIcon x:Name="Glyph"   FontSize="16"  Glyph="{Binding SymbolAsChar}" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTipService.ToolTip="{x:Bind Label}"/>
+                <TextBlock x:Name="Text" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Label}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -47,51 +43,80 @@
                         <AdaptiveTrigger MinWindowWidth="0" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="RootSplitView.DisplayMode" Value="Overlay"/>
+                        <Setter Target="RootSplitView.DisplayMode" Value="CompactOverlay"/>
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
+    
         <!-- Top-level navigation menu + app content -->
         <SplitView x:Name="RootSplitView"
-                   DisplayMode="Inline"
-                   OpenPaneLength="256" 
+                   DisplayMode="CompactOverlay" 
+                   OpenPaneLength="256" Grid.ColumnSpan="2"
                    IsTabStop="False">
             <SplitView.Pane>
+                <StackPanel>
+                <Border HorizontalAlignment="Stretch" Background="#1d7373">
+                    <ToggleButton x:Name="TogglePaneButton"
+                      TabIndex="1" Background="#1d7373" Grid.Column="0"
+                      Style="{StaticResource SplitViewTogglePaneButtonStyle}"
+                      IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
+                      Unchecked="TogglePaneButton_Checked"
+                      AutomationProperties.Name="Menu"
+                      ToolTipService.ToolTip="Menu" />
+                </Border>
+
                 <!-- A custom ListView to display the items in the pane.  The automation Name is set in the ContainerContentChanging event. -->
-                <controls:NavMenuListView  x:Name="NavMenuList" SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
+                <controls:NavMenuListView  Background="#2b2b2b" x:Name="NavMenuList" SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
                                           TabIndex="3"
-                                          Margin="0,48,0,0"
+                                          Margin="0,0,0,0"
+                                          HorizontalContentAlignment="Stretch"
                                           ContainerContentChanging="NavMenuItemContainerContentChanging"
                                           ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                                           ItemTemplate="{StaticResource NavMenuItemTemplate}"
                                           ItemInvoked="NavMenuList_ItemInvoked">
                     <controls:NavMenuListView.Header>
                         <!-- Using this custom back navigation button until the system-provided back button is enabled. -->
-                        <Button x:Name="BackButton"
+                      
+                    </controls:NavMenuListView.Header>
+
+                 
+
+                </controls:NavMenuListView>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid x:Name="RootContent">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Height="48" Background="#2b2b2b" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Grid x:Name="RootGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BackButton"
                                 TabIndex="2"
                                 Style="{StaticResource NavigationBackButtonStyle}"
                                 IsEnabled="{Binding AppFrame.CanGoBack, ElementName=Root}"
                                 Width="{Binding ItemsPanelRoot.Width, ElementName=NavMenuList}"
                                 HorizontalAlignment="{Binding ItemsPanelRoot.HorizontalAlignment, ElementName=NavMenuList}"
                                 Click="BackButton_Click"/>
-                    </controls:NavMenuListView.Header>
-                </controls:NavMenuListView>
-            </SplitView.Pane>
-
+                            <TextBlock x:Name="Title" Grid.Column="1" Style="{ThemeResource BodyTextBlockStyle}" Text="Электрички Москвы" VerticalAlignment="Center" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </SplitView.Content>
             <!-- OnNavigatingToPage we synchronize the selected item in the nav menu with the current page.
                  OnNavigatedToPage we move keyboard focus to the first item on the page after it's loaded. -->
           
         </SplitView>
 
-        <!-- Declared last to have it rendered above everything else, but it needs to be the first item in the tab sequence. -->
-        <ToggleButton x:Name="TogglePaneButton"
-                      TabIndex="1"
-                      Style="{StaticResource SplitViewTogglePaneButtonStyle}"
-                      IsChecked="{Binding IsPaneOpen, ElementName=RootSplitView, Mode=TwoWay}"
-                      Unchecked="TogglePaneButton_Checked"
-                      AutomationProperties.Name="Menu"
-                      ToolTipService.ToolTip="Menu" />
+       
+   
+        
+        
     </Grid>
 </views:MvxWindowsPage>

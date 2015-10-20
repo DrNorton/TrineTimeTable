@@ -6,32 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:Cirrious.MvvmCross.WindowsCommon.Views"
+    xmlns:controls="using:TrainTimeTable.Controls"
     mc:Ignorable="d">
-
-    <Hub>
-        <HubSection Header="Любимые">
-            <DataTemplate>
-                <GridView ItemsSource="{Binding Favorites,Mode=TwoWay}">
+   
+    <Pivot Style="{StaticResource PivotStyle}">
+        <PivotItem Header="Любимые">
+                <GridView Margin="-10,0,0,0" SelectedItem="{Binding SelectedFavoritePath,Mode=TwoWay}" ItemsSource="{Binding Favorites,Mode=TwoWay}">
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding From.StationName}"/>
-                                <TextBlock Text="{Binding To.StationName}"/>
-                                <Image Width="200" Height="200" Source="{Binding To.Image.FullImageUrl}"/>
-                            </StackPanel>
-                           
+                           <controls:FavoriteStationImageControl FavoriteDirection="{Binding}"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
-            </DataTemplate>
+       </PivotItem>
         
-       
-        </HubSection>
 
-        <HubSection Header="Новости">
+        <PivotItem Header="Новости">
 
-        </HubSection>
-    </Hub>
+        </PivotItem>
+    </Pivot>
 
 
 

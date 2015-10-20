@@ -51,6 +51,22 @@ namespace TrainTimeTable.Api.Controllers.Controllers
           
         }
 
+        [System.Web.Http.Route("GetTrain")]
+        [System.Web.Http.HttpPost]
+        public async Task<IHttpActionResult> GetTrain(TrainRequest trainRequest)
+        {
+            try
+            {
+                var result = await _yandexApiService.LoadTrain(trainRequest);
+                return SuccessApiResult(result);
+            }
+            catch (Exception e)
+            {
+                return ErrorApiResult(100, e.Message);
+            }
+
+        }
+
 
         [System.Web.Http.Route("GetAllStationsCoordinates")]
         [System.Web.Http.HttpPost]

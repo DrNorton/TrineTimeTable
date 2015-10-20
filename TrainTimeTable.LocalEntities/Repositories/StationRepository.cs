@@ -14,11 +14,10 @@ namespace TrainTimeTable.LocalEntities.Repositories
             _context = context;
         }
 
-        public async Task AddStationsIfNotExists(IEnumerable<Station> stations )
+        public  Task AddStationsIfNotExists(IEnumerable<Station> stations )
         {
             var connection = _context.CreateConnection();
-            var table = connection.Table<Station>();
-            await connection.InsertOrReplaceAllWithChildrenAsync(stations);
+            return connection.InsertOrReplaceAllWithChildrenAsync(stations,true);
         }
 
         public Task AddStation(Station station)
@@ -32,7 +31,7 @@ namespace TrainTimeTable.LocalEntities.Repositories
         public Task<List<Station>> FindByName(string name)
         {
             var connection = _context.CreateConnection();
-            return connection.Table<Station>().Where(x => x.StationName.Contains(name)).ToListAsync();
+            return connection.Table<Station>().Where(x => x.StationName.ToLower().StartsWith(name.ToLower())).ToListAsync();
         }
 
 

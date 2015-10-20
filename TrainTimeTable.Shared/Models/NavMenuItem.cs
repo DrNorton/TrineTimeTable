@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 
 namespace TrainTimeTable.Shared.Models
 {
@@ -8,6 +7,7 @@ namespace TrainTimeTable.Shared.Models
     /// </summary>
     public class NavMenuItem
     {
+        public string Background { get; set; }
         public string Label { get; set; }
         public int Symbol { get; set; }
         public char SymbolAsChar

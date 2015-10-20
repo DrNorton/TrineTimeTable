@@ -6,6 +6,12 @@ namespace TrainTimeTable.Shared.ViewModels.Base
     {
         private bool _isLoading;
         private string _loadingText;
+        private string _title;
+
+        public LoadingScreen(string title)
+        {
+            _title = title;
+        }
 
         protected void Wait(bool loading, string loadingText = "загрузка")
         {
@@ -37,6 +43,12 @@ namespace TrainTimeTable.Shared.ViewModels.Base
                 _loadingText = value;
                 RaisePropertyChanged(() => LoadingText);
             }
+        }
+
+        public string Title
+        {
+            get { return _title; }
+           
         }
 
         public void Close()

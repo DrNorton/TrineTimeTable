@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TrainTimeTable.ApiClient.Facade;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using TrainTimeTable.LocalEntities;
 using TrainTimeTable.LocalEntities.Repositories;
 using TrainTimeTable.Shared.ViewModels.Base;
+using TrainTimeTable.Shared.ViewModels.Shedule;
 
 namespace TrainTimeTable.Shared.ViewModels
 {
@@ -15,11 +12,14 @@ namespace TrainTimeTable.Shared.ViewModels
         private readonly IFavoriteTrainRepository _favoriteTrainRepository;
         private readonly IStationRepository _stationRepository;
         private List<FavoriteTrainPath> _favorites;
+        private FavoriteTrainPath _selectedFavoritePath;
 
         public MainViewModel(IFavoriteTrainRepository favoriteTrainRepository,IStationRepository stationRepository)
+            :base("Электрички")
         {
             _favoriteTrainRepository = favoriteTrainRepository;
             _stationRepository = stationRepository;
+         
         }
 
         public List<FavoriteTrainPath> Favorites
@@ -30,6 +30,23 @@ namespace TrainTimeTable.Shared.ViewModels
                 _favorites = value;
                 base.RaisePropertyChanged(()=>Favorites);
             }
+        }
+
+        public FavoriteTrainPath SelectedFavoritePath
+        {
+            get { return _selectedFavoritePath; }
+            set
+            {
+                _selectedFavoritePath = value;
+                NavigateToSelectedFavorite(value);
+                base.RaisePropertyChanged(()=>SelectedFavoritePath);
+            }
+        }
+
+        private void NavigateToSelectedFavorite(FavoriteTrainPath value)
+        {
+            var favorite = JsonConvert.SerializeObject(value);
+            ShowViewModel<SheduleWizardViewModel>(new { favorite = favorite });
         }
 
         public override async void Start()

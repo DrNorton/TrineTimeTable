@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using Newtonsoft.Json;
 using TrainTimeTable.ApiClient.Facade;
 using TrainTimeTable.ApiClient.Response;
 using TrainTimeTable.LocalEntities;
 using TrainTimeTable.LocalEntities.Repositories;
+using TrainTimeTable.Shared.Models.Enum;
 using TrainTimeTable.Shared.ViewModels.Base;
 
 namespace TrainTimeTable.Shared.ViewModels.Shedule
@@ -28,22 +30,25 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
         private List<TrainTread> _allTrainsThreads;
         private bool _isAll=false;
         private string _hideUnusedText;
+        private CancellationTokenSource _insertStationCancelationToken;
+        private TrainTread _selectedThread;
 
         private string _favoriteIcon= "";
         private bool _isFavorite;
-
         public ICommand FindCommand { get; set; }
         public ICommand HideUnusedCommand { get; set; }
         public ICommand AddToFavoritesCommand { get; set; }
 
         public SheduleWizardViewModel(IApiFacade apiFacade,IFavoriteTrainRepository favoriteTrainRepository,IStationRepository stationRepository)
+            :base("Расписание")
         {
             _apiFacade = apiFacade;
             _favoriteTrainRepository = favoriteTrainRepository;
             _stationRepository = stationRepository;
             FindCommand=new MvxCommand(async ()=> await Find());
             AddToFavoritesCommand=new MvxCommand(async ()=> await AddToFavorites());
-            HideUnusedCommand=new MvxCommand(() =>
+            _insertStationCancelationToken=new CancellationTokenSource();
+            HideUnusedCommand =new MvxCommand(() =>
             {
                 _isAll = !_isAll;
                 ShowAndHideUnused();
@@ -51,6 +56,29 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
             });
             _selectDate=new DateTimeOffset(DateTime.Now);
             SetHideUnusedText();
+        }
+
+        public async void Init(string favorite)
+        {
+            if (!String.IsNullOrEmpty(favorite)) {
+            var favoriteTrainPath=JsonConvert.DeserializeObject<FavoriteTrainPath>(favorite);
+            ToPattern = favoriteTrainPath.To.StationName;
+            FromPattern = favoriteTrainPath.From.StationName;
+            FromStation = new StationResponse()
+            {
+                Ecr = favoriteTrainPath.From.Ecr,
+                ExpressCode = favoriteTrainPath.From.ExpressCode,
+                StationName = favoriteTrainPath.From.StationName
+            };
+
+            ToStation = new StationResponse()
+            {
+                Ecr = favoriteTrainPath.To.Ecr,
+                ExpressCode = favoriteTrainPath.To.ExpressCode,
+                StationName = favoriteTrainPath.To.StationName
+            };
+           await Find();
+          }
         }
 
         private async Task AddToFavorites()
@@ -95,11 +123,13 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
 
         public async Task<int> Find()
         {
-            CheckFavorite();
+            TrainTreads = null;
+            IsLoading = true;
+            await CheckFavorite();
             var apiResponse=await _apiFacade.GetShedule(FromStation.ExpressCode, ToStation.ExpressCode, _selectDate.DateTime, 1);
             _allTrainsThreads = apiResponse.Result.TrainTreads;
             ShowAndHideUnused();
-            
+            IsLoading = false;
             return 0;
 
         }
@@ -118,23 +148,41 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
            
         }
 
-        private async void LoadStations(int number)
+        private async Task<List<StationResponse>> LoadStationsFromApi(string pattern)
         {
-            List<StationResponse> loadedStations;
-            if (number == 0)
-            {
-                loadedStations = (await _apiFacade.SearchStationByName(ToPattern)).Result;
-                ToSuggestionStations = loadedStations;
+            List<StationResponse> loadedStations=null;
+            loadedStations = (await _apiFacade.SearchStationByName(pattern)).Result;
+            await InsertStations(loadedStations);
+            return loadedStations;
+        }
 
-            }
-            else
+        private void SetSuggestionList(StationDirection direction, List<StationResponse> stations)
+        {
+            if (direction == StationDirection.To)
             {
-                loadedStations = (await _apiFacade.SearchStationByName(FromPattern)).Result;
-                FromSuggestionStations = loadedStations;
+                ToSuggestionStations = stations;
             }
+
+            if (direction == StationDirection.From)
+            {
+                FromSuggestionStations = stations;
+            }
+        }
+
+        private async Task<List<StationResponse>> LoadStationsFromLocalDb(string pattern)
+        {
+          var stationsFromLocal=await _stationRepository.FindByName(pattern);
+            return
+                stationsFromLocal?.Select(
+                    x => new StationResponse() {ExpressCode = x.ExpressCode, Ecr = x.Ecr, StationName = x.StationName}).ToList();
+        }
+
+        private async Task InsertStations(List<StationResponse> loadedStations)
+        {
             if (loadedStations != null && loadedStations.Any())
-                await
-                    _stationRepository.AddStationsIfNotExists(
+            {
+               
+               await _stationRepository.AddStationsIfNotExists(
                         loadedStations.Select(
                             x =>
                                 new Station()
@@ -153,7 +201,7 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
                                         new Image() {FullImageUrl = x.Image.FullImageUrl, ThumbUrl = x.Image.ThumbUrl}
                                 })
                             .ToList());
-
+            }
         }
 
         public List<StationResponse> ToSuggestionStations
@@ -182,13 +230,28 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
             set
             {
                 _toPattern = value;
-                if (value != null && value.Length > 3)
+                if (value != null)
                 {
-                    LoadStations(0);
+                    LoadStations(StationDirection.To,_toPattern);
                 }
                 base.RaisePropertyChanged(()=>ToPattern);
             }
         }
+
+        private async void LoadStations(StationDirection direction,string pattern)
+        {
+            List<StationResponse> loadedStations;
+            loadedStations = await LoadStationsFromLocalDb(pattern);
+            if (!loadedStations.Any() && pattern.Length>3)
+            {
+                //грузим с апи
+                loadedStations = await LoadStationsFromApi(pattern);
+            }
+
+            SetSuggestionList(direction,loadedStations);
+            
+        }
+
 
         public string FromPattern
         {
@@ -196,9 +259,9 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
             set
             {
                 _fromPattern = value;
-                if (value != null && value.Length > 3)
+                if (value != null)
                 {
-                    LoadStations(1);
+                    LoadStations(StationDirection.From, value);
                 }
                 base.RaisePropertyChanged(() => FromPattern);
             }
@@ -206,8 +269,6 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
 
         public StationResponse FromStation { get; set; }
         public StationResponse ToStation { get; set; }
-
-      
 
         public ObservableCollection<TrainTread> TrainTreads
         {
@@ -264,6 +325,22 @@ namespace TrainTimeTable.Shared.ViewModels.Shedule
                     FavoriteIcon = ((char)0xE113).ToString();
                 }
             }
+        }
+
+        public TrainTread SelectedThread
+        {
+            get { return _selectedThread; }
+            set
+            {
+                _selectedThread = value;
+                LoadTrain(value);
+                base.RaisePropertyChanged(()=>SelectedThread);
+            }
+        }
+
+        private async void LoadTrain(TrainTread value)
+        {
+            ShowViewModel<TrainStopsViewModel>(new {uid = value.Uid,date=SelectDate.Date});
         }
     }
 }

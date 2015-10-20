@@ -9,12 +9,14 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using TrainTimeTable.Api.Controllers.Models;
 using TrainTimeTable.Api.Controllers.Settings;
+using TrainTimeTable.Api.Dto;
 
 namespace TrainTimeTable.Api.Controllers.Services
 {
     public interface IYandexApiService
     {
         Task<TrainShedules> LoadSheduleByScr(StationSearch stationSearch);
+        Task<TrainStops> LoadTrain(TrainRequest trainRequest);
     }
 
     public class YandexApiService : IYandexApiService
@@ -32,6 +34,7 @@ namespace TrainTimeTable.Api.Controllers.Services
         public async Task<TrainShedules> LoadSheduleByScr(StationSearch stationSearch)
         {
             var request=new RestRequest(Method.GET);
+            _restClient.BaseUrl = new Uri(_restClient.BaseUrl.ToString() + "search/");
             request.AddParameter("apikey", _apiKey);
             request.AddParameter("format", "json");
             request.AddParameter("system", "express");
@@ -44,6 +47,24 @@ namespace TrainTimeTable.Api.Controllers.Services
             var response = await _restClient.ExecuteTaskAsync(request);
             var resultObject=JsonConvert.DeserializeObject<YandexApiResponse>(response.Content);
             return ConvertToModel(resultObject);
+
+        }
+
+        public async Task<TrainStops> LoadTrain(TrainRequest trainRequest)
+        {
+            var request = new RestRequest(Method.GET);
+            _restClient.BaseUrl=new Uri(_restClient.BaseUrl.ToString()+ "thread/");
+            request.AddParameter("apikey", _apiKey);
+            request.AddParameter("format", "json");
+            request.AddParameter("lang", "ru");
+            request.AddParameter("date", trainRequest.Date.ToString("yyyy-MM-dd"));
+            request.AddParameter("uid", trainRequest.Uid);
+            request.AddParameter("show_systems", "all");
+            
+            var uri = _restClient.BuildUri(request);
+            var response = await _restClient.ExecuteTaskAsync(request);
+            var resultObject = JsonConvert.DeserializeObject<YandexTrainApiResponse>(response.Content);
+            return ConvertTrainToModel(resultObject);
 
         }
 
@@ -63,8 +84,23 @@ namespace TrainTimeTable.Api.Controllers.Services
             }
 
             trainShedules.TrainTreads =
-                yandexApiResponse.Threads.Select(x => new TrainTread() {Arrival = x.Arrival,Departure = x.DepartureTime,Stops = x.Stops,TrainTitle = x.Train.Title,Duration = x.Duration}).ToList();
+                yandexApiResponse.Threads.Select(x => new TrainTread() {Uid = x.Train.Uid,Arrival = x.Arrival,Departure = x.DepartureTime,Stops = x.Stops,TrainTitle = x.Train.Title,Duration = x.Duration}).ToList();
             return trainShedules;
+        }
+
+
+        public TrainStops ConvertTrainToModel(YandexTrainApiResponse apiResponse)
+        {
+            return new TrainStops()
+            {
+                Days = apiResponse.Days,
+                ExceptDays = apiResponse.ExceptDays,
+                Number = apiResponse.Number,
+                ShortTitle = apiResponse.ShortTitle,
+                StartTime = apiResponse.StartTime,
+                Stops = apiResponse.Stops.Select(x => new Stops() {Arrival = x.Arrival,Departure = x.Departure,Duration = x.Duration,Platform = x.Platform,Station = new StationDto() {Ecr = x.Station.Code.Ecr,ExpressCode = x.Station.Code.Express,StationName = x.Station.Title} }).ToList()
+            };
+
         }
     }
 }

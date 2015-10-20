@@ -19,7 +19,7 @@ namespace TrainTimeTable.Api.EfDao.Repositories
 
         public async Task<IEnumerable<StationDto>> SearchStationByName(string pattern)
         {
-            return _context.Stations.Where(x=>x.StationName.ToLower().Contains(pattern.ToLower())).ToList().Select(x => ConvertToDtoStation(x));
+            return _context.Stations.Where(x=>x.StationName.ToLower().StartsWith(pattern.ToLower())).ToList().Select(x => ConvertToDtoStation(x));
         }
 
         private StationDto ConvertToDtoStation(Station x)
@@ -27,8 +27,8 @@ namespace TrainTimeTable.Api.EfDao.Repositories
             
             var stationDto= new StationDto()
             {
-                Ecr = x.Ecr,
-                ExpressCode = x.ExpressCode,
+                Ecr = x.Ecr.ToString(),
+                ExpressCode = x.ExpressCode.ToString(),
                 StationName = x.StationName,
                 Position = new PositionDto() {Latitude = x.Position.Latitude, Longitude = x.Position.Longitude}
                
@@ -43,12 +43,12 @@ namespace TrainTimeTable.Api.EfDao.Repositories
 
         public async Task<IEnumerable<StationDto>> GetAllStations()
         {
-            return _context.Stations.Where(x=>x.Position.Latitude!=null && x.Position.Longitude!=null).Select(x => new StationDto() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, StationName = x.StationName,Position = new PositionDto() {Latitude = x.Position.Latitude,Longitude = x.Position.Longitude} }).ToList();
+            return _context.Stations.Where(x=>x.Position.Latitude!=null && x.Position.Longitude!=null).Select(x => new StationDto() { Ecr = x.Ecr.ToString(), ExpressCode = x.ExpressCode.ToString(), StationName = x.StationName,Position = new PositionDto() {Latitude = x.Position.Latitude,Longitude = x.Position.Longitude} }).ToList();
         }
 
         public async Task<IEnumerable<StationDto>> GetAllStationsWithoutCoordinates()
         {
-            return _context.Stations.Where(x => x.Position.Latitude != null && x.Position.Longitude != null).Select(x => new StationDto() { Ecr = x.Ecr, ExpressCode = x.ExpressCode, StationName = x.StationName }).ToList();
+            return _context.Stations.Where(x => x.Position.Latitude != null && x.Position.Longitude != null).Select(x => new StationDto() { Ecr = x.Ecr.ToString(), ExpressCode = x.ExpressCode.ToString(), StationName = x.StationName }).ToList();
         }
     }
 }

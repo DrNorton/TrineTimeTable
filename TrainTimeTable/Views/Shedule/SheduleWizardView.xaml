@@ -17,15 +17,17 @@
                                       AlternateBrushes="{Binding ElementName=View,Path=Brushes}"
                                       x:Key="AlternateConverter"/>
         
-        <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="TabNavigation" Value="Local"/>
-            <Setter Property="IsHoldingEnabled" Value="True"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-          
-        </Style>
+      
     </views:MvxWindowsPage.Resources>
+    <Page.Transitions>
+    <TransitionCollection>
+        <NavigationThemeTransition>
+            <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                <ContinuumNavigationTransitionInfo />
+            </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+        </NavigationThemeTransition>
+    </TransitionCollection>
+    </Page.Transitions>
     <Page.BottomAppBar>
         <CommandBar Visibility="{Binding TrainTreads,Converter={StaticResource NullEmptyCollectionVisibilityConverter}}" >
             <AppBarButton Command="{Binding AddToFavoritesCommand}"  Label="В избранное">
@@ -36,7 +38,13 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-        <Grid x:Name="LayoutRoot" Margin="0,25,0,0"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="LayoutRoot" Margin="0,0,0,0"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#171717">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
@@ -49,31 +57,16 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <AutoSuggestBox Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" SuggestionChosen="FromStationBox_OnSuggestionChosen" TextMemberPath="StationName" Header="Откуда" Margin="10,10,10,0"  Text="{Binding FromPattern, Mode=TwoWay}" ItemsSource="{Binding FromSuggestionStations, Mode=TwoWay}">
-            <AutoSuggestBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding StationName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </AutoSuggestBox.ItemTemplate>
-
-        </AutoSuggestBox>
-        <AutoSuggestBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" SuggestionChosen="ToStationBox_OnSuggestionChosen"   TextMemberPath="StationName" Header="Куда" Margin="10,10,10,0"  Text="{Binding ToPattern, Mode=TwoWay}" ItemsSource="{Binding ToSuggestionStations, Mode=TwoWay}">
-            <AutoSuggestBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding StationName}" />
-                    </StackPanel>
-                </DataTemplate>
-            </AutoSuggestBox.ItemTemplate>
-        </AutoSuggestBox>
-
+            <ProgressRing Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" IsActive="{Binding IsLoading,Mode=TwoWay}"/>
+        <controls:SubTrainPickerControl Grid.ColumnSpan="2"/>
         <DatePicker Header="Когда"  YearVisible="False" Date="{Binding SelectDate, Mode=TwoWay}"  VerticalAlignment="Center"   Margin="10"   Grid.Row="2" Grid.Column="0"/>
         <Button  Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,28,0,0"  Command="{Binding FindCommand}" Content="Найти!"/>
        
-        <Button Visibility="{Binding ElementName=sheduleList,Path=ItemsSource,Converter={StaticResource NullEmptyCollectionVisibilityConverter}}"  Margin="10,5,0,0" Grid.Row="3" Content="{Binding HideUnusedText,Mode=TwoWay}" Command="{Binding HideUnusedCommand}"/>
-        <ListView ItemContainerStyle="{StaticResource ListViewItemStyle}" x:Name="sheduleList" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding TrainTreads, Mode=TwoWay}" Grid.Row="4"  Grid.ColumnSpan="2">
+    
+        </Grid>
+
+        <Button Visibility="{Binding ElementName=sheduleList,Path=ItemsSource,Converter={StaticResource NullEmptyCollectionVisibilityConverter}}"  Margin="10,5,0,0" Grid.Row="2" Content="{Binding HideUnusedText,Mode=TwoWay}" Command="{Binding HideUnusedCommand}"/>
+        <ListView  Grid.Row="3" SelectedItem="{Binding SelectedThread,Mode=TwoWay}" ItemContainerStyle="{StaticResource ListViewItemStyle}" x:Name="sheduleList" HorizontalContentAlignment="Stretch"  ItemsSource="{Binding TrainTreads, Mode=TwoWay}"  Grid.ColumnSpan="2">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <controls:AdaptiveTrainSheduleItemControl Background="{Binding Converter={StaticResource AlternateConverter}}" DataContext="{Binding}"/>

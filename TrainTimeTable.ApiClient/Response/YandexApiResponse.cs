@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace TrainTimeTable.ApiClient.Response
 {
@@ -26,6 +21,7 @@ namespace TrainTimeTable.ApiClient.Response
     }
     public class TrainTread
     {
+        public string Uid { get; set; }
         public double Duration { get; set; }
         public DateTime Arrival { get; set; }
         public DateTime Departure { get; set; }

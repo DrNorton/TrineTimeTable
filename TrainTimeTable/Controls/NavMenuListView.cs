@@ -248,8 +248,12 @@ namespace TrainTimeTable.Controls
             else if (this.splitViewHost.DisplayMode == SplitViewDisplayMode.CompactInline ||
                 this.splitViewHost.DisplayMode == SplitViewDisplayMode.CompactOverlay)
             {
-                this.ItemsPanelRoot.SetValue(FrameworkElement.WidthProperty, this.splitViewHost.CompactPaneLength);
-                this.ItemsPanelRoot.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+                var itemsPanelRoot = this.ItemsPanelRoot;
+                if (itemsPanelRoot != null)
+                {
+                    itemsPanelRoot.SetValue(FrameworkElement.WidthProperty, this.splitViewHost.CompactPaneLength);
+                    itemsPanelRoot.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+                }
             }
         }
     }

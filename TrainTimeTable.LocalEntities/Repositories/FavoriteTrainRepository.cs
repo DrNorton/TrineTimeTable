@@ -23,13 +23,17 @@ namespace TrainTimeTable.LocalEntities.Repositories
         public async Task AddToFavorites(long fromEcr, long toEcr)
         {
             var connection = _context.CreateConnection();
-            var stationTable= connection.Table<Station>();
-            var newFavorite = new FavoriteTrainPath()
-            {
-                FromId = (await stationTable.Where(x => x.Ecr == fromEcr).FirstOrDefaultAsync()).Id,
-                ToId = (await stationTable.Where(x => x.Ecr == toEcr).FirstOrDefaultAsync()).Id
-            };
-            await connection.InsertAsync(newFavorite);
+            
+                var stationTable = connection.Table<Station>();
+                var newFavorite = new FavoriteTrainPath()
+                {
+                    FromId = (await stationTable.Where(x => x.Ecr == fromEcr).FirstOrDefaultAsync()).Id,
+                    ToId = (await stationTable.Where(x => x.Ecr == toEcr).FirstOrDefaultAsync()).Id
+                };
+                await connection.InsertAsync(newFavorite);
+              
+            
+           
         }
 
         public async Task<bool> CheckFavorites(long ecrfrom,long ecrto)

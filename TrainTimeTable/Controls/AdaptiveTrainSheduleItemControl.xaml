@@ -24,9 +24,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <RelativePanel x:Name="RelativePanel"  Grid.Column="0" >
-            <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="departureTime"  Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Text="{Binding Arrival,Converter={StaticResource DateTimeStringFormatConverter},ConverterParameter='HH:mm'}"/>
+            <TextBlock RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignHorizontalCenterWithPanel="True" x:Name="departureTime"  Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Text="{Binding Departure,Converter={StaticResource DateTimeStringFormatConverter},ConverterParameter='HH:mm'}"/>
                 <FontIcon  x:Name="arrow" RelativePanel.Below="departureTime" RelativePanel.AlignHorizontalCenterWithPanel="True"   Glyph="&#xf175;" FontFamily="ms-appx:///Assets/Fonts/fontawesome-webfont.ttf#FontAwesome"  HorizontalAlignment="Center" FontSize="20"/>
-                <TextBlock x:Name="arrivalTime"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="arrow" FontStyle="Italic" Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="{Binding Departure,Converter={StaticResource DateTimeStringFormatConverter},ConverterParameter='HH:mm'}"/>
+            <TextBlock x:Name="arrivalTime"  RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="arrow" FontStyle="Italic" Margin="5"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="15" Text="{Binding Arrival,Converter={StaticResource DateTimeStringFormatConverter},ConverterParameter='HH:mm'}"/>
                 <TextBlock  x:Name="duration"  RelativePanel.RightOf="arrow" RelativePanel.AlignVerticalCenterWith="arrow" Margin="5,-6,0,0"  FontSize="13" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Duration, Converter={StaticResource SecundsToMinutesConverter}}"/>
             
         </RelativePanel>

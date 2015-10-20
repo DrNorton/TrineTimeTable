@@ -1,27 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using TrainTimeTable.Shared.Models;
 using TrainTimeTable.Shared.ViewModels.Base;
-using TrainTimeTable.Shared.ViewModels.Map;
 using TrainTimeTable.Shared.ViewModels.Shedule;
 
 namespace TrainTimeTable.Shared.ViewModels
 {
-    public class ShellViewModel : LoadingScreen
+    public class ShellViewModel : MvxViewModel
     {
         private  List<NavMenuItem> _menu;
         private NavMenuItem _selectedItem;
         private ICommand _goHomeCommand;
         private ICommand _goToSheduleCommand;
         private ICommand _goToMapCommand;
-       
-
         public ICommand GoHomeCommand
         {
             get
@@ -30,7 +23,6 @@ namespace TrainTimeTable.Shared.ViewModels
                 return _goHomeCommand;
             }
         }
-
         public ICommand GoToSheduleCommand
         {
             get
@@ -39,8 +31,6 @@ namespace TrainTimeTable.Shared.ViewModels
                 return _goToSheduleCommand;
             }
         }
-
-       
 
         public NavMenuItem SelectedItem
         {
@@ -66,7 +56,6 @@ namespace TrainTimeTable.Shared.ViewModels
 
         private void Navigate(NavMenuItem value)
         {
-            
             ShowViewModel(value.ViewModelType);
         }
 

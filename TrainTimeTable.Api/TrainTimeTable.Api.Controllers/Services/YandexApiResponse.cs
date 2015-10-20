@@ -68,13 +68,15 @@ namespace TrainTimeTable.Api.Controllers.Services
         public string Number { get; set; }
         [JsonProperty("short_title")]
         public string ShortTitle { get; set; }
+        [JsonProperty("uid")]
+        public string Uid { get; set; }
 
     }
 
     public class Station
     {
-        [JsonProperty("code")]
-        public string Code { get; set; }
+        [JsonProperty("codes")]
+        public Codes Code { get; set; }
         [JsonProperty("station_type")]
         public string StationType { get; set; }
         [JsonProperty("title")]
@@ -87,5 +89,58 @@ namespace TrainTimeTable.Api.Controllers.Services
         public string TransportType { get; set; }
         [JsonProperty("type")]
         public string Type { get; set; }
+    }
+
+
+    public class YandexTrainApiResponse
+    {
+        [JsonProperty("except_days")]
+        public string ExceptDays { get; set; }
+        [JsonProperty("uid")]
+        public string Uid { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("start_time")]
+        public string StartTime { get; set; }
+        [JsonProperty("number")]
+        public string Number { get; set; }
+        [JsonProperty("short_title")]
+        public string ShortTitle { get; set; }
+        [JsonProperty("days")]
+        public string Days { get; set; }
+        [JsonProperty("stops")]
+        public List<StopResponse> Stops { get; set; } 
+  
+
+    }
+
+    public class StopResponse
+    {
+        [JsonProperty("arrival")]
+        public DateTime? Arrival { get; set; }
+        [JsonProperty("departure")]
+        public DateTime? Departure { get; set; }
+        [JsonProperty("terminal")]
+        public string Terminal { get; set; }
+        [JsonProperty("platform")]
+        public string Platform { get; set; }
+        [JsonProperty("station")]
+        public Station Station { get; set; }
+        [JsonProperty("stop_time")]
+        public int? StopTime { get; set; }
+        [JsonProperty("duration")]
+        public double? Duration { get; set; }
+        
+    }
+
+    public class Codes
+    {
+         
+        [JsonProperty("esr")]
+        public string Ecr { get; set; }
+        [JsonProperty("express")]
+        public string Express { get; set; }
+        [JsonProperty("yandex")]
+        public string Yandex { get; set; }
     }
 }
