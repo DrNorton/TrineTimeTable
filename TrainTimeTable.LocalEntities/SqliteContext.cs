@@ -17,7 +17,9 @@ namespace TrainTimeTable.LocalEntities
             _platform = platform;
             _init = init;
             _dbPath = init.Path;
-            _connectionFactory = new Func<SQLiteConnectionWithLock>(() => new SQLiteConnectionWithLock(_platform, new SQLiteConnectionString(_dbPath, storeDateTimeAsTicks: false)));
+            var connection = new SQLiteConnectionWithLock(_platform,
+                new SQLiteConnectionString(_dbPath, storeDateTimeAsTicks: true));
+            _connectionFactory = new Func<SQLiteConnectionWithLock>(() =>connection);
             CreateTables();
         }
 
@@ -26,11 +28,17 @@ namespace TrainTimeTable.LocalEntities
             return new SQLiteAsyncConnection(_connectionFactory);
         }
 
-        private async void CreateTables()
+        private  void CreateTables()
         {
-            var conn = CreateConnection();
-            await conn.CreateTableAsync<Station>();
-            await conn.CreateTableAsync<FavoriteTrainPath>();
+            using (var conn = new SQLiteConnection(_platform, _dbPath))
+            {
+                conn.CreateTable<Image>();
+                conn.CreateTable<Position>();
+                conn.CreateTable<Station>();
+                conn.CreateTable<FavoriteTrainPath>();
+                conn.Close();
+            }
+         
         }
     }
 }

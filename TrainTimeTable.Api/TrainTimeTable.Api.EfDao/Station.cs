@@ -18,11 +18,10 @@ namespace TrainTimeTable.Api.EfDao
         public long Ecr { get; set; }
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
-        public int PositionId { get; set; }
         public Nullable<long> OpenStreetMapNode { get; set; }
         public string OpenStreetMapUrl { get; set; }
-        public int StationTypeId { get; set; }
     
+        public virtual Image Image { get; set; }
         public virtual Position Position { get; set; }
         public virtual StationType StationType { get; set; }
     }

@@ -63,6 +63,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EfModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>EfModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Position.cs">
       <DependentUpon>EfModel.tt</DependentUpon>
     </Compile>
@@ -90,6 +93,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EfModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="App.Config" />
     <None Include="EfModel.edmx.diagram">
       <DependentUpon>EfModel.edmx</DependentUpon>
     </None>

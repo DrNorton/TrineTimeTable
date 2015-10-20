@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace TrainTimeTable.ApiClient.Response
@@ -13,6 +9,7 @@ namespace TrainTimeTable.ApiClient.Response
         public long ExpressCode { get; set; }
         public string StationName { get; set; }
 
+        public ImageDto Image { get; set; }
         public PositionDto Position { get; set; }
 
         [JsonIgnore]

@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TrainTimeTableModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TrainTimeTableModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThumbUrl" Type="nvarchar" MaxLength="150" />
+          <Property Name="FullImageUrl" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="Positions">
           <Key>
             <PropertyRef Name="Id" />
@@ -25,6 +33,7 @@
           <Property Name="OpenStreetMapNode" Type="bigint" />
           <Property Name="OpenStreetMapUrl" Type="nvarchar" MaxLength="250" />
           <Property Name="StationTypeId" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="bigint" />
         </EntityType>
         <EntityType Name="StationTypes">
           <Key>
@@ -33,6 +42,18 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Stations_ToImage">
+          <End Role="Images" Type="Self.Images" Multiplicity="0..1" />
+          <End Role="Stations" Type="Self.Stations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stations">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Stations_ToPositions">
           <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
           <End Role="Stations" Type="Self.Stations" Multiplicity="*" />
@@ -58,9 +79,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="TrainTimeTableModelStoreContainer">
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stations" EntityType="Self.Stations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StationTypes" EntityType="Self.StationTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Stations_ToImage" Association="Self.FK_Stations_ToImage">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="Stations" EntitySet="Stations" />
+          </AssociationSet>
           <AssociationSet Name="FK_Stations_ToPositions" Association="Self.FK_Stations_ToPositions">
             <End Role="Positions" EntitySet="Positions" />
             <End Role="Stations" EntitySet="Stations" />
@@ -70,11 +96,37 @@
             <End Role="Stations" EntitySet="Stations" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TrainTimeTableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="traintimetable_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Images" EntityType="TrainTimeTableModel.Image" />
+          <EntitySet Name="Positions" EntityType="TrainTimeTableModel.Position" />
+          <EntitySet Name="Stations" EntityType="TrainTimeTableModel.Station" />
+          <EntitySet Name="StationTypes" EntityType="TrainTimeTableModel.StationType" />
+          <AssociationSet Name="FK_Stations_ToImage" Association="TrainTimeTableModel.FK_Stations_ToImage">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Station" EntitySet="Stations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stations_ToPositions" Association="TrainTimeTableModel.FK_Stations_ToPositions">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Station" EntitySet="Stations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stations_ToStationTypes" Association="TrainTimeTableModel.FK_Stations_ToStationTypes">
+            <End Role="StationType" EntitySet="StationTypes" />
+            <End Role="Station" EntitySet="Stations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThumbUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FullImageUrl" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Stations" Relationship="TrainTimeTableModel.FK_Stations_ToImage" FromRole="Image" ToRole="Station" />
+        </EntityType>
         <EntityType Name="Position">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,7 +134,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Latitude" Type="Double" />
           <Property Name="Longitude" Type="Double" />
-          <NavigationProperty Name="Stations" Relationship="Self.FK_Stations_ToPositions" FromRole="Positions" ToRole="Stations" />
+          <NavigationProperty Name="Stations" Relationship="TrainTimeTableModel.FK_Stations_ToPositions" FromRole="Position" ToRole="Station" />
         </EntityType>
         <EntityType Name="Station">
           <Key>
@@ -91,13 +143,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ecr" Type="Int64" Nullable="false" />
           <Property Name="ExpressCode" Type="Int64" Nullable="false" />
-          <Property Name="StationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="StationName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OpenStreetMapNode" Type="Int64" />
           <Property Name="OpenStreetMapUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="StationTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Position" Relationship="Self.FK_Stations_ToPositions" FromRole="Stations" ToRole="Positions" />
-          <NavigationProperty Name="StationType" Relationship="Self.FK_Stations_ToStationTypes" FromRole="Stations" ToRole="StationTypes" />
+          <NavigationProperty Name="Image" Relationship="TrainTimeTableModel.FK_Stations_ToImage" FromRole="Station" ToRole="Image" />
+          <NavigationProperty Name="Position" Relationship="TrainTimeTableModel.FK_Stations_ToPositions" FromRole="Station" ToRole="Position" />
+          <NavigationProperty Name="StationType" Relationship="TrainTimeTableModel.FK_Stations_ToStationTypes" FromRole="Station" ToRole="StationType" />
         </EntityType>
         <EntityType Name="StationType">
           <Key>
@@ -105,82 +156,89 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Stations" Relationship="Self.FK_Stations_ToStationTypes" FromRole="StationTypes" ToRole="Stations" />
+          <NavigationProperty Name="Stations" Relationship="TrainTimeTableModel.FK_Stations_ToStationTypes" FromRole="StationType" ToRole="Station" />
         </EntityType>
+        <Association Name="FK_Stations_ToImage">
+          <End Type="TrainTimeTableModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="TrainTimeTableModel.Station" Role="Station" Multiplicity="*" />
+        </Association>
         <Association Name="FK_Stations_ToPositions">
-          <End Role="Positions" Type="Self.Position" Multiplicity="1" />
-          <End Role="Stations" Type="Self.Station" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Positions">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Stations">
-              <PropertyRef Name="PositionId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="TrainTimeTableModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="TrainTimeTableModel.Station" Role="Station" Multiplicity="*" />
         </Association>
         <Association Name="FK_Stations_ToStationTypes">
-          <End Role="StationTypes" Type="Self.StationType" Multiplicity="1" />
-          <End Role="Stations" Type="Self.Station" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StationTypes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Stations">
-              <PropertyRef Name="StationTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="TrainTimeTableModel.StationType" Role="StationType" Multiplicity="1" />
+          <End Type="TrainTimeTableModel.Station" Role="Station" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="traintimetable_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Positions" EntityType="Self.Position" />
-          <EntitySet Name="Stations" EntityType="Self.Station" />
-          <EntitySet Name="StationTypes" EntityType="Self.StationType" />
-          <AssociationSet Name="FK_Stations_ToPositions" Association="Self.FK_Stations_ToPositions">
-            <End Role="Positions" EntitySet="Positions" />
-            <End Role="Stations" EntitySet="Stations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Stations_ToStationTypes" Association="Self.FK_Stations_ToStationTypes">
-            <End Role="StationTypes" EntitySet="StationTypes" />
-            <End Role="Stations" EntitySet="Stations" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TrainTimeTableModelStoreContainer" CdmEntityContainer="traintimetable_dbEntities">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="TrainTimeTableModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="FullImageUrl" ColumnName="FullImageUrl" />
+                <ScalarProperty Name="ThumbUrl" ColumnName="ThumbUrl" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Positions">
             <EntityTypeMapping TypeName="TrainTimeTableModel.Position">
               <MappingFragment StoreEntitySet="Positions">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stations">
             <EntityTypeMapping TypeName="TrainTimeTableModel.Station">
               <MappingFragment StoreEntitySet="Stations">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Ecr" ColumnName="Ecr" />
-                <ScalarProperty Name="ExpressCode" ColumnName="ExpressCode" />
-                <ScalarProperty Name="StationName" ColumnName="StationName" />
-                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
-                <ScalarProperty Name="OpenStreetMapNode" ColumnName="OpenStreetMapNode" />
                 <ScalarProperty Name="OpenStreetMapUrl" ColumnName="OpenStreetMapUrl" />
-                <ScalarProperty Name="StationTypeId" ColumnName="StationTypeId" />
+                <ScalarProperty Name="OpenStreetMapNode" ColumnName="OpenStreetMapNode" />
+                <ScalarProperty Name="StationName" ColumnName="StationName" />
+                <ScalarProperty Name="ExpressCode" ColumnName="ExpressCode" />
+                <ScalarProperty Name="Ecr" ColumnName="Ecr" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StationTypes">
             <EntityTypeMapping TypeName="TrainTimeTableModel.StationType">
               <MappingFragment StoreEntitySet="StationTypes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FK_Stations_ToImage" TypeName="TrainTimeTableModel.FK_Stations_ToImage" StoreEntitySet="Stations">
+            <EndProperty Name="Station">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Image">
+              <ScalarProperty Name="Id" ColumnName="ImageId" />
+            </EndProperty>
+            <Condition ColumnName="ImageId" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Stations_ToPositions" TypeName="TrainTimeTableModel.FK_Stations_ToPositions" StoreEntitySet="Stations">
+            <EndProperty Name="Station">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="Position">
+              <ScalarProperty Name="Id" ColumnName="PositionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_Stations_ToStationTypes" TypeName="TrainTimeTableModel.FK_Stations_ToStationTypes" StoreEntitySet="Stations">
+            <EndProperty Name="Station">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <EndProperty Name="StationType">
+              <ScalarProperty Name="Id" ColumnName="StationTypeId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -196,7 +254,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

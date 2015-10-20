@@ -46,17 +46,18 @@
     <Compile Include="MainSetup.cs" />
     <Compile Include="Messages\AllStationWithLocationMessage.cs" />
     <Compile Include="Messages\SetMyPositionMessage.cs" />
+    <Compile Include="Models\Enum\StationDirection.cs" />
     <Compile Include="Models\Map\GeoModel.cs" />
     <Compile Include="Models\Map\StationModel.cs" />
     <Compile Include="Models\NavMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IPositionReceiver.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModels\Auth\AuthViewModel.cs" />
     <Compile Include="ViewModels\Base\LoadingScreen.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\Map\MapPanelItem.cs" />
-    <Compile Include="ViewModels\Map\MapViewModel.cs" />
     <Compile Include="ViewModels\Shedule\SheduleWizardViewModel.cs" />
+    <Compile Include="ViewModels\Shedule\TrainStopsViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

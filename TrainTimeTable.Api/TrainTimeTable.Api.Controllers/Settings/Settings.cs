@@ -15,7 +15,7 @@ namespace TrainTimeTable.Api.Controllers.Settings
 
         public string YandexBaseUrl
         {
-            get { return @"https://api.rasp.yandex.net/v1.0/search/"; }
+            get { return @"https://api.rasp.yandex.net/v1.0/"; }
         }
     }
 }

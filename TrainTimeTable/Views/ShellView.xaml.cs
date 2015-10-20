@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Windows.Foundation;
+﻿using Windows.Foundation;
 using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Core;
@@ -8,13 +6,13 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Cirrious.CrossCore;
 using Cirrious.MvvmCross.WindowsCommon.Views;
-using TrainTimeTable.Controls;
 using TrainTimeTable.Shared.Models;
 using TrainTimeTable.Shared.ViewModels;
 using TrainTimeTable.Shared.ViewModels.Base;
@@ -31,7 +29,8 @@ namespace TrainTimeTable.Views
        
 
         public static ShellView Current = null;
-       
+
+        private Frame _currentFrame;
 
         /// <summary>
         /// Initializes a new instance of the AppShell, sets the static 'Current' reference,
@@ -40,12 +39,16 @@ namespace TrainTimeTable.Views
         /// </summary>
         public ShellView(Frame frame)
         {
+            _currentFrame = frame;
             this.InitializeComponent();
             var transition = new NavigationThemeTransition();
             frame.ContentTransitions=new TransitionCollection();
             frame.ContentTransitions.Add(transition);
             SetTitleBarColor();
-            this.RootSplitView.Content = frame;
+          
+            _currentFrame.Navigated += _currentFrame_Navigated;
+            Grid.SetRow(_currentFrame,1);
+            this.RootContent.Children.Add(frame);
             this.Loaded += (sender, args) =>
             {
                 this.DataContext = Mvx.Resolve<ShellViewModel>();
@@ -53,9 +56,9 @@ namespace TrainTimeTable.Views
                 Current = this;
                 this.TogglePaneButton.Focus(FocusState.Programmatic);
             };
-
+            
             SystemNavigationManager.GetForCurrentView().BackRequested += SystemNavigationManager_BackRequested;
-
+       
             // If on a phone device that has hardware buttons then we hide the app's back button.
             if (ApiInformation.IsTypePresent("Windows.Phone.UI.Input.HardwareButtons"))
             {
@@ -63,6 +66,16 @@ namespace TrainTimeTable.Views
             }
            
         }
+
+        private void _currentFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            var title = (e.Content as MvxWindowsPage).Tag;
+            if (title != null)
+                Title.Text = title.ToString();
+
+        }
+
+   
 
         private  void SetTitleBarColor()
         {
@@ -147,9 +160,7 @@ namespace TrainTimeTable.Views
         private void BackRequested(ref bool handled)
         {
             // Get a hold of the current frame so that we can inspect the app back stack.
-
-            var frame = (this.RootSplitView.Content as Frame);
-            var currentViewModel = ((frame.Content as MvxWindowsPage).DataContext as LoadingScreen);
+            var currentViewModel = ((_currentFrame.Content as MvxWindowsPage).DataContext as LoadingScreen);
             currentViewModel.Close();
         }
 

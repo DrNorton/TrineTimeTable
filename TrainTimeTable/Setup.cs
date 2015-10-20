@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using Cirrious.CrossCore;
@@ -20,7 +17,7 @@ using TrainTimeTable.Shared;
 using TrainTimeTable.Shared.Models;
 using TrainTimeTable.Shared.Services;
 using TrainTimeTable.Shared.ViewModels;
-using TrainTimeTable.Shared.ViewModels.Map;
+using TrainTimeTable.Shared.ViewModels.Auth;
 using TrainTimeTable.Shared.ViewModels.Shedule;
 
 namespace TrainTimeTable
@@ -71,9 +68,9 @@ namespace TrainTimeTable
            {
                new NavMenuItem()
                 {
-                   
                     Symbol = (int)Symbol.Home,
                     Label = "Главная",
+                    Background = "#0f5757",
                     ViewModelType= typeof(MainViewModel)
                 },
                 new NavMenuItem()
@@ -81,15 +78,18 @@ namespace TrainTimeTable
                     
                     Symbol = (int)Symbol.Calendar,
                     Label = "Расписание",
+                    Background = "#00FFFFFFF",
                     ViewModelType= typeof(SheduleWizardViewModel)
                 },
-                new NavMenuItem()
+                 new NavMenuItem()
                 {
-                    Symbol = (int)Symbol.Map,
-                    Label = "Карта",
-                    ViewModelType= typeof(MapViewModel)
+
+                    Symbol = (int)Symbol.Contact,
+                    Label = "Авторизация",
+                    Background = "#00FFFFFFF",
+                    ViewModelType= typeof(AuthViewModel)
                 }
-                
+
            });
             Mvx.RegisterSingleton(typeof(List<NavMenuItem>),navlist);
     }

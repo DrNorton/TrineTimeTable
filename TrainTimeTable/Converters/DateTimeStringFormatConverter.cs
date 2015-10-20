@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 
 namespace TrainTimeTable.Converters
@@ -11,6 +7,7 @@ namespace TrainTimeTable.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == null) return null;
             var date = (DateTime) value;
             return date.ToString((string) parameter);
         }

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Reflection;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Cirrious.MvvmCross.WindowsCommon.Views;
 using TrainTimeTable.ApiClient.Response;
+using TrainTimeTable.Controls;
 using TrainTimeTable.Shared.ViewModels.Shedule;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -32,16 +28,17 @@ namespace TrainTimeTable.Views.Shedule
         public SheduleWizardView()
         {
             this.InitializeComponent();
+            this.Tag = "Расписание";
+     
         }
 
-        private void ToStationBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            (this.DataContext as SheduleWizardViewModel).ToStation = args.SelectedItem as StationResponse;
-        }
+        
 
-        private void FromStationBox_OnSuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            (this.DataContext as SheduleWizardViewModel).FromStation = args.SelectedItem as StationResponse;
-        }
+
+       
+
+        
+
+       
     }
 }
