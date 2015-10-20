@@ -19,12 +19,12 @@
     
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton  Label="Регистрация">
+            <AppBarButton Command="{Binding RegisterCommand}"  Label="Регистрация">
                 <AppBarButton.Icon>
                     <FontIcon  FontFamily="ms-appx:///Assets/Fonts/fontawesome-webfont.ttf#FontAwesome" Glyph="&#xf234;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton  Label="Восстановление">
+            <AppBarButton Command="{Binding RecoverCommand}"  Label="Восстановление">
                 <AppBarButton.Icon>
                     <FontIcon  FontFamily="ms-appx:///Assets/Fonts/fontawesome-webfont.ttf#FontAwesome" Glyph="&#xf0e2;"/>
                 </AppBarButton.Icon>

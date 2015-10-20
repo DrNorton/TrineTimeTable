@@ -169,6 +169,12 @@
     <Compile Include="Views\Auth\AuthView.xaml.cs">
       <DependentUpon>AuthView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Auth\RecoverView.xaml.cs">
+      <DependentUpon>RecoverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Auth\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Favorites\AddToFavoritesView.xaml.cs">
       <DependentUpon>AddToFavoritesView.xaml</DependentUpon>
     </Compile>
@@ -234,6 +240,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\Auth\AuthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auth\RecoverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Auth\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

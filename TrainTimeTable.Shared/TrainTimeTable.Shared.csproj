@@ -54,6 +54,8 @@
     <Compile Include="Services\IPositionReceiver.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\Auth\AuthViewModel.cs" />
+    <Compile Include="ViewModels\Auth\RecoverViewModel.cs" />
+    <Compile Include="ViewModels\Auth\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Base\LoadingScreen.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Shedule\SheduleWizardViewModel.cs" />

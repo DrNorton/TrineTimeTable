@@ -71,8 +71,15 @@ namespace TrainTimeTable.Views
         {
             var title = (e.Content as MvxWindowsPage).Tag;
             if (title != null)
+            {
                 Title.Text = title.ToString();
-
+            }
+            else
+            {
+                //var page = (e.Content as MvxWindowsPage);
+                //var data = page.DataContext as LoadingScreen;
+                //Title.Text = data.Title;
+            }
         }
 
    
